@@ -1,0 +1,72 @@
+.invoiceDashboard{
+    display: flex;
+    flex-direction: column;
+    background-color: #FFFFFF;
+
+}
+
+.section{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    padding: 10px;
+    justify-content: space-between;
+}
+
+.paidInvoiceDetails , .unpaidInvoiceDetails , .totalInvoiceCount ,.paidInvoice ,.unpaidInvoice {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: space-between;
+}
+
+.recentTransactions{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-right: 20px;
+    margin-right: 20px;
+}
+
+.totalInvoices ,.paidInvoiceDetails , .unpaidInvoiceDetails,
+.invoiceCount, 
+.processedInvoice, 
+.paidAmt , 
+.paidCount,
+.unpaidAmt,
+.unpaidCount{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+   flex: 1;    
+} 
+
+.vertical-line {
+  border-left: 2px solid #ccc; 
+  height: 50px;              
+padding: 20px;
+
+}
+
+.p-titleName{
+    color: #424242;
+    font-size: 20px;
+    /* padding-bottom: 20px; */
+    margin: 5px;
+    padding: 5px;
+}
+
+.p-h3{
+    font-size: 16px;
+    color: black;
+}
+
+.p-p1{
+    font-size: 16px;
+    color: #757575;
+}
+
+.p-p2{
+    font-size: 16px;
+    color: #BDBDBD;
+}

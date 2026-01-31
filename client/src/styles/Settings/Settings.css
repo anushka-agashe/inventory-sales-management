@@ -1,0 +1,16 @@
+.s-container {
+  display: flex;
+    flex-direction: row;
+  width: 100%;
+  height: 100vh;
+}
+
+.sidebar-wrapper {
+  width: 20%;
+  height: 100vh;
+}
+
+.settings-wrapper {
+  width: 80%;
+  height: 100vh;
+}

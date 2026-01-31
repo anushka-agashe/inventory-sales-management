@@ -1,0 +1,50 @@
+productName,category,price,quantity,unit,expiryDate,threshold,image
+Rice,Grains,50,100,kg,01-12-2026,10,uploads/rice.png
+Sugar,Groceries,40,80,kg,01-10-2026,15,uploads/sugar.png
+Milk,Dairy,25,30,litre,01-02-2026,5,uploads/milk.png
+Wheat Flour,Grains,45,120,kg,15-11-2026,20,uploads/wheatflour.png
+Salt,Groceries,20,200,kg,01-01-2028,25,uploads/salt.png
+Turmeric Powder,Spices,60,40,kg,10-09-2026,10,uploads/turmeric.png
+Chilli Powder,Spices,70,8,kg,12-08-2026,10,uploads/chilli.png
+Cumin Seeds,Spices,90,5,kg,05-07-2026,10,uploads/cumin.png
+Coriander Powder,Spices,65,0,kg,20-06-2026,10,uploads/coriander.png
+Black Pepper,Spices,120,3,kg,18-05-2026,8,uploads/pepper.png
+Mustard Oil,Oil,150,25,litre,01-03-2027,10,uploads/mustardoil.png
+Sunflower Oil,Oil,140,5,litre,01-04-2027,10,uploads/sunfloweroil.png
+Olive Oil,Oil,500,0,litre,01-08-2027,5,uploads/oliveoil.png
+Butter,Dairy,55,12,pack,15-02-2026,10,uploads/butter.png
+Cheese,Dairy,80,6,pack,20-02-2026,10,uploads/cheese.png
+Curd,Dairy,30,50,cup,05-02-2026,10,uploads/curd.png
+Paneer,Dairy,90,4,pack,10-02-2026,8,uploads/paneer.png
+Bread,Bakery,35,20,pack,05-02-2026,10,uploads/bread.png
+Brown Bread,Bakery,40,2,pack,05-02-2026,8,uploads/brownbread.png
+Eggs,Poultry,6,180,piece,10-02-2026,30,uploads/eggs.png
+Chicken,Meat,240,0,kg,05-02-2026,5,uploads/chicken.png
+Mutton,Meat,650,6,kg,05-02-2026,5,uploads/mutton.png
+Fish,Seafood,300,2,kg,05-02-2026,6,uploads/fish.png
+Apples,Fruits,120,60,kg,15-02-2026,20,uploads/apples.png
+Bananas,Fruits,50,10,dozen,05-02-2026,8,uploads/bananas.png
+Oranges,Fruits,80,0,kg,10-02-2026,10,uploads/oranges.png
+Tomatoes,Vegetables,40,25,kg,05-02-2026,10,uploads/tomatoes.png
+Potatoes,Vegetables,30,100,kg,20-03-2026,25,uploads/potatoes.png
+Onions,Vegetables,35,5,kg,20-03-2026,15,uploads/onions.png
+Carrots,Vegetables,45,0,kg,10-02-2026,10,uploads/carrots.png
+Peas,Vegetables,60,12,kg,10-02-2026,10,uploads/peas.png
+Spinach,Vegetables,20,3,kg,02-02-2026,8,uploads/spinach.png
+Cabbage,Vegetables,25,18,kg,15-02-2026,10,uploads/cabbage.png
+Cauliflower,Vegetables,35,0,kg,10-02-2026,10,uploads/cauliflower.png
+Biscuits,Snacks,20,150,pack,01-12-2026,30,uploads/biscuits.png
+Chips,Snacks,20,4,pack,01-10-2026,15,uploads/chips.png
+Namkeen,Snacks,30,0,pack,01-09-2026,10,uploads/namkeen.png
+Chocolate,Confectionery,50,40,bar,01-12-2026,10,uploads/chocolate.png
+Ice Cream,Frozen,120,10,box,01-06-2026,8,uploads/icecream.png
+Cold Drink,Beverages,40,70,bottle,01-12-2026,20,uploads/colddrink.png
+Juice,Beverages,60,5,bottle,01-11-2026,15,uploads/juice.png
+Tea Powder,Beverages,180,25,kg,01-12-2026,10,uploads/tea.png
+Coffee,Beverages,250,3,jar,01-12-2026,8,uploads/coffee.png
+Detergent,Household,110,40,kg,01-01-2028,10,uploads/detergent.png
+Dishwash Liquid,Household,90,6,bottle,01-01-2028,10,uploads/dishwash.png
+Toothpaste,Personal Care,55,35,tube,01-05-2027,10,uploads/toothpaste.png
+Soap,Personal Care,30,0,bar,01-05-2027,10,uploads/soap.png
+Shampoo,Personal Care,120,8,bottle,01-05-2027,10,uploads/shampoo.png
+Handwash,Personal Care,85,2,bottle,01-05-2027,8,uploads/handwash.png

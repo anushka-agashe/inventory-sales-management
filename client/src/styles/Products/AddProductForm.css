@@ -1,0 +1,194 @@
+.addProductPage {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100vh;
+}
+
+.sidebar-wrapper {
+  width: 20%;
+  height: 100%;
+}
+
+.rightHome-wrapper {
+  width: 80%;
+  height: 100%;
+  background-color: #424457;
+}
+.productForm{
+    background-color: #ECECF4;
+    /* margin: 5px; */
+    margin: 10px;
+    padding: 20px;
+    border: none;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+
+.formFields {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; 
+}
+
+/* Each label + input block */
+.formRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Label style */
+.formRow label {
+    width: 140px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #616161;
+}
+
+/* Input style */
+.formRow input {
+  width: 50%;
+  background-color: white;
+  border-radius: 8px;
+  padding: 10px 12px;
+  border: none;
+  font-size: 14px;
+}
+
+
+
+.error {
+  color: #d32f2f;
+  font-size: 12px;
+  display: block;
+  margin-top: 4px;
+}
+
+#discard{
+background-color: #ECECF4;
+border: solid 1px #FAFAFA;
+padding: 10px;
+border-radius: 4px;
+
+}
+
+.formActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  margin-top: 5px;
+}
+
+.discardBtn {
+  background: transparent;
+  border: solid 1px #FAFAFA;
+  color: #777;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 4px;
+  padding: 10px 18px;
+}
+
+/* #add{
+background-color: #242531;
+border: solid 1px #FAFAFA;
+padding: 10px;
+border-radius: 4px;
+} */
+
+.addBtn {
+  background: #242531;
+  border: solid 1px #FAFAFA;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+ .imageUploadSection {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.imagePreviewBox {
+  width: 120px;
+  height: 120px;
+  border: 2px dashed #c9c9d1;
+  border-radius: 10px;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.imagePreviewBox img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+
+.uploadTextBlock {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.uploadTextBlock p {
+  margin: 0;
+  font-size: 14px;
+  color: #BDBDBD;
+ 
+}
+
+.orText {
+  margin: 4px 0;
+  font-weight: 600;
+  color: #BDBDBD;
+  font-size: 14px;
+}
+
+
+.browseText {
+  color: #4393E4;
+  font-weight: 400;
+  cursor: pointer;
+  margin-top: 2px;
+  display: inline-block;
+  font-size: 14px;
+}
+
+.browseText:hover {
+  text-decoration: underline;
+}
+
+#h-h1{
+  font-size: 18px;
+  color: #ffffff;
+  padding: 10px;
+}
+
+.custom-line-6{
+  background-color: #ffffff;
+}
+
+.createLink{
+  display: flex;
+  flex-direction: row;
+}
+
+.h-h2{
+  font-size: 18px;
+  color: #ffffff;
+  padding: 10px;
+  font-size: 14px;
+}

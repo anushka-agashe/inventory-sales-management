@@ -1,0 +1,127 @@
+
+.signup{
+   
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    background-color: #1E1E1E;
+
+}
+
+.sidebar{
+    /* width: 35%; */
+    width: clamp(280px, 35%, 450px); 
+    height: 100vh;
+    background-color: #F7FBFF;
+    background-color: rgba(255, 255, 255, 0.86);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0px 40px 40px 0px;
+    padding: clamp(10px, 2vw, 20px);
+}
+
+.heroSection{
+     width: clamp(350px, 65%, 800px);
+    /* width: 65%; */
+    height: 100vh;
+    /* background-color: #1E1E1E; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* gap: 30px; */
+    gap: clamp(20px, 3vw, 40px);
+
+}
+
+.section1{
+    /* width: 600px;
+    height: 100px; */
+    /* width: 60%; */
+     width: clamp(300px, 60%, 600px);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between ;
+}
+
+.section1 .heading h1{
+    color: white;
+    /* font-size: 40px; */
+    font-size: clamp(28px, 3vw, 40px);
+}
+
+
+#signupHero{
+    /* width: 65%; */
+     width: clamp(300px, 65%, 600px);
+    height: auto;
+} 
+
+@media screen and (max-width: 768px) {
+  .signup {
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+  }
+
+  .heroSection {
+    display: none ;
+    width: 0 ;
+    height: 0 ;
+    overflow: hidden ;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: 100%; /* full viewport height */
+    border-radius: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .signupContainer {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* vertical center */
+    align-items: center;     /* horizontal center */
+    padding: 0 15px;
+    box-sizing: border-box;
+  }
+
+  #intro-h1 {
+    font-size: 22px;
+    text-align: center;
+  }
+
+  #intro-p {
+    font-size: 16px;
+    text-align: center;
+  }
+
+  #nameSignupInput,
+  #emailSignupInput,
+  #passwordSignupInput {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+
+  #signup-btn {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  #p-signup {
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .eyeIcon {
+    width: 18px;
+    height: 18px;
+  }
+}

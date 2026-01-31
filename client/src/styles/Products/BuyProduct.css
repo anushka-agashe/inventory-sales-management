@@ -1,0 +1,88 @@
+.buyProductOverlay {
+  position: fixed;
+  inset: 0; 
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.buyProductModal {
+  background: #E2E5E4;
+  width: 550px ;
+    height: 350px;
+  border-radius: 16px;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  /* margin: 40px; */
+}
+/* 
+.buyDiv{
+    background-color: #FAFBFC;
+    border-radius: 16px ;
+    width: 550px ;
+    height: 350px;
+    display: flex;
+    flex-direction: row;
+     align-content: center;
+    justify-items: center; 
+    padding: 20px;
+} */
+
+.buyDiv{
+    background-color: #242531;
+    border-radius: 8px ;
+    width: 320px ;
+    height: 70px;
+    padding: 10px;
+    margin: 0px;
+    display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.buyDiv h2{
+color: #FAFBFC;
+    font-size: 18px;
+    margin: 0px;
+}
+
+.buyInput{
+     background-color: #43444D;
+    color: #FAFBFC;
+    font-size: 18px;
+    border-radius: 8px ;
+    width: 320px ;
+    height: 70px;
+    
+    padding: 10px;
+     margin: 0px;
+     border: none;
+  outline: none;
+}
+
+.buyBtn{
+     background-color: #242531;
+    color: #FAFBFC;
+    font-size: 14px;
+    border-radius: 8px ;
+    width: 120px ;
+    height: 35px;
+    padding: 5px;
+     margin: 0px;
+     border: none;
+  cursor: pointer;
+}
+.errorText {
+  color: red;
+  font-size: 14px;
+}
