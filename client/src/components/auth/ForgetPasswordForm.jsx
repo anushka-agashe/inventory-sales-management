@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import "../../styles/auth/ForgetPasswordForm.css";
 
-const ForgetPasswordForm = ({ onNext, setEmail ,setOtp  }) => {
+const ForgetPasswordForm = ({ onNext, setEmail, setOtp }) => {
   const [email, setLocalEmail] = useState("");
   const [error, setError] = useState("");
 
@@ -12,19 +12,27 @@ const ForgetPasswordForm = ({ onNext, setEmail ,setOtp  }) => {
 
     if (!email) return setError("Email is required");
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/user/forgetpassword`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
-      });
+      const res = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/user/forgetpassword`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email }),
+        },
+      );
 
       const data = await res.json();
+
+      console.log("FORGOT PASSWORD RESPONSE:", data);
+
       if (!res.ok) throw new Error(data.error);
       setEmail(email);
 
       if (data.otp) {
         setOtp(data.otp);
-        alert(`Your OTP is ${data.otp}`); 
+        alert(`Your OTP is ${data.otp}`);
+      } else {
+        alert("OTP not received from server");
       }
 
       onNext();
