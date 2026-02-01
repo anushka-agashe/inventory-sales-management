@@ -12,7 +12,7 @@ const ForgetPasswordForm = ({ onNext, setEmail }) => {
 
     if (!email) return setError("Email is required");
     try {
-      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/user/forgetpassword`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/user/forgetpassword`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),
