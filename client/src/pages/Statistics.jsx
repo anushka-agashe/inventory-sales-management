@@ -4,7 +4,7 @@ import ProductStock from "../components/Statistics/ProductStock.jsx"
 import ProductsSold from "../components/Statistics/ProductsSold.jsx"
 import SalesPurchase from "../components/Home/SalesPurchase.jsx"
 import TopProducts from "../components/Home/TopProducts.jsx"
-import '../styles/Statistics/statistics.css'
+import '../styles/Statistics/Statistics.css'
 import pieFrame from '../assets/images/pieFrame.png'
 import settingsIcon from '../assets/icons/logo_setting.png'
 import { Link } from "react-router-dom"
