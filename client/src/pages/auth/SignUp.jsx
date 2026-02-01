@@ -1,6 +1,6 @@
 import SignupForm from '../../components/auth/SignupForm'
 import pieFrame from '../../assets/auth/pieFrame.png'
-import loginHero from '../../assets/auth/loginHero.png'
+import loginHero from '../../assets/auth/LoginHero.png'
 import '../../styles/auth/Signup.css'
 
 const SignUp = () => {
