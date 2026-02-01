@@ -22,7 +22,7 @@ const ForgetPassword = () => {
     <div className="forgetPassword">
       <div className="fp-sidebar">
         {/* <ForgetPasswordForm /> */}
-        {step === 1 && <ForgetPasswordForm onNext={() => setStep(2)} setEmail={setEmail}  />}
+        {step === 1 && <ForgetPasswordForm onNext={() => setStep(2)} setEmail={setEmail} setOtp={setOtp}  />}
         {step === 2 && <OTPVerificationForm onNext={() => setStep(3)} setOtp={setOtp}  />}
         {step === 3 && <ResetPasswordForm email={email} otp={otp} />}
       </div>

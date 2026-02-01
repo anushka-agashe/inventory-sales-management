@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import "../../styles/auth/ForgetPasswordForm.css";
 
-const ForgetPasswordForm = ({ onNext, setEmail }) => {
+const ForgetPasswordForm = ({ onNext, setEmail ,setOtp  }) => {
   const [email, setLocalEmail] = useState("");
   const [error, setError] = useState("");
 
@@ -21,6 +21,12 @@ const ForgetPasswordForm = ({ onNext, setEmail }) => {
       const data = await res.json();
       if (!res.ok) throw new Error(data.error);
       setEmail(email);
+
+      if (data.otp) {
+        setOtp(data.otp);
+        alert(`Your OTP is ${data.otp}`); 
+      }
+
       onNext();
     } catch (err) {
       setError(err.message);

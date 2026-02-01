@@ -69,12 +69,12 @@ const sendOtp = async (req, res) => {
     try {
         const otp = await User.sendOtp(email);
 
-        await sendOtpEmail(email, otp);
+        // await sendOtpEmail(email, otp);
 
         res.status(200).json({
             success: true,
             message: "OTP sent to email (check preview URL in server console)",
-            // otp
+            otp
         })
 
     } catch (err) {
