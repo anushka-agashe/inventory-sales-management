@@ -4,7 +4,7 @@ import preview from "../../assets/icons/flowbite_file-csv-solid.png";
 import { useState } from "react";
 import axios from "axios";
 
-const BulkProductUpload = ({ onClose }) => {
+const BulkProductUpload = ({ onClose ,onUploadSuccess  }) => {
   const [file, setFile] = useState(null);
   const [error, setError] = useState("");
   const [previewMode, setPreviewMode] = useState(false);
@@ -47,6 +47,7 @@ const BulkProductUpload = ({ onClose }) => {
       );
 
       alert("Products uploaded successfully!");
+       onUploadSuccess(); 
       onClose();
       window.location.reload(); // refresh table
     } catch (err) {

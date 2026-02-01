@@ -19,7 +19,14 @@ const ProductTable = ({ search, onAddProduct }) => {
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth <= 768);
     window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+
+    const handleProductsUpdated = () => fetchProducts(); 
+    window.addEventListener("productsUpdated", handleProductsUpdated);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("productsUpdated", handleProductsUpdated);
+    };
   }, []);
 
   useEffect(() => {
@@ -30,7 +37,7 @@ const ProductTable = ({ search, onAddProduct }) => {
     fetchProducts();
   }, [page, search, isMobile]);
 
-  const fetchProducts = async () => {
+  const fetchProducts = useCallback (async () => {
     try {
       const token = localStorage.getItem("token");
 
@@ -62,7 +69,7 @@ const ProductTable = ({ search, onAddProduct }) => {
     } catch (err) {
       console.error("Error fetching products", err);
     }
-  };
+  }, [page, search, isMobile]);
 
   const handleRowClick = (product) => {
     if (isMobile) return;
