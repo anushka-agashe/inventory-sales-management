@@ -8,7 +8,7 @@ const TotalRevenue = () => {
     const fetchStats = async () => {
       try {
         const token = localStorage.getItem("token");
-        const res = await axios.get("http://localhost:4000/api/stats/statistics", {
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/stats/statistics`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setRevenue(res.data.totalRevenue);

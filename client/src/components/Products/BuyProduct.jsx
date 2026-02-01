@@ -25,7 +25,7 @@ const BuyProduct = ({ product, onClose, onBuySuccess }) => {
       const token = localStorage.getItem("token");
 
       await axios.post(
-        `http://localhost:4000/api/products/buy/${product._id}`,
+        `${process.env.REACT_APP_API_URL}/api/products/buy/${product._id}`,
         { quantity: qty },
         {
           headers: { Authorization: `Bearer ${token}` },

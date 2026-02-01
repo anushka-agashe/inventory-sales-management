@@ -17,7 +17,7 @@ const OverallInventory = () => {
     try {
       const token = localStorage.getItem("token");
 
-      const res = await axios.get("http://localhost:4000/api/stats/summary", {
+      const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/stats/summary`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 

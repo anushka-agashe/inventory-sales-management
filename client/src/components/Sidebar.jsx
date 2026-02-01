@@ -60,25 +60,12 @@ const Sidebar = () => {
             <p className="title">Settings</p>
           </Link>
 
-          {/* Settings (hidden on mobile) */}
-          {/* <Link
-    to="/settings"
-    id="settings-link"
-    className={`item ${location.pathname === "/settings" ? "active" : ""}`}
-  >
-    <img className="icon" src={settingsIcon} alt="" />
-    <p className="title">Settings</p>
-  </Link> */}
         </div>
       </div>
 
       <hr className="custom-line-2" />
 
-      {/* <div className="user-container">
-        <p>
-          {user ? `${user.firstName}` : "User"}
-        </p>
-      </div> */}
+      
 
       <div className="user-container">
         <div className="avatar-circle">

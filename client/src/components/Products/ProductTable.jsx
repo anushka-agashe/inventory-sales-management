@@ -42,7 +42,7 @@ const ProductTable = ({ search, onAddProduct }) => {
       }
 
       const res = await fetch(
-        `http://localhost:4000/api/products?${params.toString()}`,
+        `${process.env.REACT_APP_API_URL}/api/products?${params.toString()}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         },
@@ -74,7 +74,7 @@ const ProductTable = ({ search, onAddProduct }) => {
     try {
       const token = localStorage.getItem("token");
       await axios.post(
-        `http://localhost:4000/api/products/buy/${selectedProduct._id}`,
+        `${process.env.REACT_APP_API_URL}/api/products/buy/${selectedProduct._id}`,
         { quantity: Number(quantity) },
         { headers: { Authorization: `Bearer ${token}` } },
       );

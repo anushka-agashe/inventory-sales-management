@@ -16,7 +16,7 @@ const SalesOverview = () => {
       try {
         const token = localStorage.getItem("token");
         const res = await axios.get(
-          "http://localhost:4000/api/invoices/dashboard",
+          `${process.env.REACT_APP_API_URL}/api/invoices/dashboard`,
           { headers: { Authorization: `Bearer ${token}` } }
         );
         setStats(res.data);
