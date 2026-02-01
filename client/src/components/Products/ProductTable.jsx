@@ -1,5 +1,5 @@
 import "../../styles/Products/ProductTable.css";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useCallback } from "react";
 import AddProductModal from "./AddProductModal";
 import BuyProduct from "./BuyProduct";
 import axios from "axios";
