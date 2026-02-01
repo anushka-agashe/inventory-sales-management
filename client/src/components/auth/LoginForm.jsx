@@ -1,25 +1,24 @@
-import React, { useState , useContext } from "react";
-import { Link ,useNavigate  } from "react-router-dom";
+import React, { useState, useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "../../styles/auth/LoginForm.css";
 import eyeIcon from "../../assets/icons/eyeIcon.png";
 import { AuthContext } from "../../context/AuthContext";
 
 const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const [form, setForm] = useState({ 
-    email: "", 
-    password: "" 
+  const [form, setForm] = useState({
+    email: "",
+    password: "",
   });
 
   const [errors, setErrors] = useState({});
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
 
-   const handleChange = (e) => {
+  const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
     setErrors({ ...errors, [e.target.name]: "" });
   };
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -36,7 +35,7 @@ const LoginForm = () => {
     }
 
     try {
-      const res = await fetch("http://localhost:4000/api/user/login", { 
+      const res = await fetch("http://localhost:4000/api/user/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
@@ -48,64 +47,56 @@ const LoginForm = () => {
         throw new Error(data.error || "Login failed");
       }
 
-      login(data); // 
-      navigate("/home"); // 
-
+      login(data);
+      navigate("/home");
     } catch (err) {
-      setErrors({ general: err.message }); // 
+      setErrors({ general: err.message });
     }
   };
 
-
-
   return (
     <div className="loginContainer">
-      <h1 id="intro-h1">Log in to your account</h1>
-      <p id="intro-p">Welcome back! Please enter your details.</p>
+      <h1 id="login-intro-h1">Log in to your account</h1>
+      <p id="login-intro-p">Welcome back! Please enter your details.</p>
       <form action="" className="loginForm" onSubmit={handleSubmit}>
-        <label id="label">
-          Email
-        </label>
+        <label className="login-label">Email</label>
         <input
           id="emailLoginInput"
           type="email"
           name="email"
-          value={form.email} 
-          onChange={handleChange} 
-          className={errors.email ? "input-error" : ""} 
+          value={form.email}
+          onChange={handleChange}
+          className={errors.email ? "input-error" : ""}
           placeholder="Example@email.com"
         />
 
         {errors.email && <p className="error">{errors.email}</p>}
 
-
-        <label id="label">
-          Password
-        </label>
-        <div className="password-container">
+        <label className="login-label">Password</label>
+        <div className="login-password-container">
           <input
-          id="passwordLoginInput"
-          type={showPassword ? "text" : "password"}
-          name="password"
-          value={form.password} 
-          onChange={handleChange} 
-          className={errors.password ? "input-error" : ""}
-          placeholder="at least 8 characters"
-        />
+            id="passwordLoginInput"
+            type={showPassword ? "text" : "password"}
+            name="password"
+            value={form.password}
+            onChange={handleChange}
+            className={errors.password ? "input-error" : ""}
+            placeholder="at least 8 characters"
+          />
 
-        <img
-          src={eyeIcon}
-          alt=""
-          className="eyeIcon"
-          onClick={() => setShowPassword(!showPassword)}
-        />
+          <img
+            src={eyeIcon}
+            alt=""
+            className="eyeIcon"
+            onClick={() => setShowPassword(!showPassword)}
+          />
         </div>
 
-      {errors.password && <p className="error">{errors.password}</p>}
+        {errors.password && <p className="error">{errors.password}</p>}
 
-      {errors.general && <p className="error">{errors.general}</p>} 
+        {errors.general && <p className="error">{errors.general}</p>}
         <Link
-          to="/auth/forgetpassword" 
+          to="/auth/forgetpassword"
           style={{
             textDecoration: "none",
             color: "blue",
@@ -119,7 +110,7 @@ const LoginForm = () => {
         <p id="p-login">
           Don't you have an account?{" "}
           <Link
-            to="/auth/signup" 
+            to="/auth/signup"
             style={{ textDecoration: "none", color: "blue", fontSize: "16px" }}
           >
             Sign up

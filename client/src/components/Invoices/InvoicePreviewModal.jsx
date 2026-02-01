@@ -7,7 +7,7 @@ import html2pdf from "html2pdf.js";
 import closeSym from "../../assets/icons/symbols_close.png";
 import downloadSym from "../../assets/icons/symbols_download.png";
 import printSym from "../../assets/icons/symbols_print.png";
-import remIcon from '../../assets/icons/rem-icon.png'
+import remIcon from "../../assets/icons/rem-icon.png";
 
 const InvoicePreviewModal = ({ invoice, onClose }) => {
   const invoiceRef = useRef();
@@ -36,6 +36,9 @@ const InvoicePreviewModal = ({ invoice, onClose }) => {
   return (
     <div className="invoiceOverlay">
       <div className="invoiceWrapper">
+        <button id="closeInv" onClick={onClose}>
+          X
+        </button>
         {/* Action Icons */}
         <div className="invoiceActions">
           <button onClick={onClose}>
@@ -51,8 +54,6 @@ const InvoicePreviewModal = ({ invoice, onClose }) => {
         <div className="invoiceModal">
           {/* Invoice Content */}
           <div className="invoicePaper" ref={invoiceRef}>
-            
-
             <div className="invoiceTop">
               <h1>INVOICE</h1>
               <p>
@@ -74,93 +75,77 @@ const InvoicePreviewModal = ({ invoice, onClose }) => {
               <div className="invoice-container">
                 <div className="invoice-sidebar">
                   <div className="sidebar-item">
-                <p>
-                  <strong>Invoice #</strong>
-                </p>
-                <p>
-                  {invoice.invoiceId}
-                </p>
-                </div>
-                <div className="sidebar-item">
-                <p>
-                  <strong>Invoice Date</strong>{" "}
-                </p>
-                <p>
-                  {/* {new Date(invoice.date).toLocaleDateString()} */}
-                  {new Date(new Date(invoice.dueDate).getTime() - 7 * 24 * 60 * 60 * 1000).toLocaleDateString()}
-                </p>
-                </div>
-                <div className="sidebar-item">
-                <p>
-                  <strong>Reference</strong>
-                </p>
-                <p>
-                  {invoice.referenceNumber}
-                </p>
-                </div>
-                <div className="sidebar-item">
-                <p>
-                  <strong>Due Date</strong>{" "}
-                </p>
-                <p>
-                  {new Date(invoice.dueDate).toLocaleDateString()}
-                  </p>
+                    <p>
+                      <strong>Invoice #</strong>
+                    </p>
+                    <p>{invoice.invoiceId}</p>
                   </div>
+                  <div className="sidebar-item">
+                    <p>
+                      <strong>Invoice Date</strong>{" "}
+                    </p>
+                    <p>
+                      {new Date(
+                        new Date(invoice.dueDate).getTime() -
+                          7 * 24 * 60 * 60 * 1000,
+                      ).toLocaleDateString()}
+                    </p>
+                  </div>
+                  <div className="sidebar-item">
+                    <p>
+                      <strong>Reference</strong>
+                    </p>
+                    <p>{invoice.referenceNumber}</p>
+                  </div>
+                  <div className="sidebar-item">
+                    <p>
+                      <strong>Due Date</strong>{" "}
+                    </p>
+                    <p>{new Date(invoice.dueDate).toLocaleDateString()}</p>
+                  </div>
+                </div>
+                <table className="invoiceTablePreview">
+                  <thead>
+                    <tr>
+                      <th>Products</th>
+                      <th>Qty</th>
+                      <th>Price</th>
+                      <th>Total</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>{invoice.product?.name}</td>
+                      <td>{invoice.quantity}</td>
+                      <td>₹{invoice.price}</td>
+                      <td>₹{invoice.amount}</td>
+                    </tr>
+                  </tbody>
+                  <tfoot>
+                    <tr className="invoice-total-row">
+                      <td>
+                        <h3>Total</h3>
+                      </td>
+                      <td></td>
+                      <td></td>
+                      <td>
+                        <h3>₹{invoice.amount}</h3>
+                      </td>
+                    </tr>
+                  </tfoot>
+                </table>
               </div>
-              <table className="invoiceTablePreview">
-              <thead>
-                <tr>
-                  <th>Products</th>
-                  <th>Qty</th>
-                  <th>Price</th>
-                  <th>Total</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>{invoice.product?.name}</td>
-                  <td>{invoice.quantity}</td>
-                  <td>₹{invoice.price}</td>
-                  <td>₹{invoice.amount}</td>
-                </tr>
-              </tbody>
-              <tfoot>
-                <tr className="invoice-total-row">
-                <td><h3>Total</h3></td>
-                <td></td>
-                <td></td>
-                <td><h3>₹{invoice.amount}</h3></td>
-                </tr>
-              </tfoot>
-            </table>
-            
-            </div>
-            <p className="reminder">
-              <img src={remIcon} alt="" />
+              <p className="reminder">
+                <img src={remIcon} alt="" />
                 Please pay within 7 days of receiving this invoice.
-            </p>
+              </p>
+            </div>
 
-            
-
-              </div>
-            {/* <div className="invoiceSummary">
-            
-              <h3>Total: ₹{invoice.amount}</h3>
-              
-            </div> */}
-            
-<div className="inv-footer">
-  <p className="invoiceFooter">
-              www.recehtol.inc
-            </p>
-            <p className="invoiceFooter">
-              +91 00000 00000
-            </p>
-            <p className="invoiceFooter">
-              hello@email.com
-            </p>
-</div>
-            
+            <div className="inv-footer">
+              <p className="invoiceFooter">www.recehtol.inc</p>
+              <p className="invoiceFooter">+91 00000 00000</p>
+              <p className="invoiceFooter">hello@email.com</p>
+            </div>
           </div>
         </div>
       </div>

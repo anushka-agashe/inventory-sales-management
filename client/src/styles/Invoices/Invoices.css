@@ -1,3 +1,23 @@
+.inv-mobile-header{
+  display: none;
+  /* flex-direction: row;
+  justify-content: space-between;
+  margin: 5px;
+  padding-left: 20px;
+  padding-right: 20px; */
+}
+
+#piemobile {
+  width: 38px;
+  height: auto;
+}
+
+#inv-settings-mobile {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+}
+
 .invoices-wrapper {
   display: flex;
   flex-direction: row;
@@ -5,12 +25,12 @@
   height: 100vh;
 }
 
-.sidebar-wrapper {
+.inv-sidebar-wrapper {
   width: 20%;
   height: 100%;
 }
 
-.rightHome-wrapper {
+.inv-rightHome-wrapper {
   width: 80%;
   height: 100%;
   background-color: #424457;
@@ -49,19 +69,19 @@
   margin: 10px;
 }
 
-#p-h1 {
+#inv-h1 {
   font-size: 18px;
   color: #ffffff;
   padding: 10px;
 }
 
 
-.search-input-wrapper {
+.inv-search-input-wrapper {
   position: relative;
   width: 100%;
 }
 
-#inputsearch {
+#inv-inputsearch {
   padding: 10px 40px 10px 40px; 
   margin: 5px;
   margin-right: 20px;
@@ -72,7 +92,7 @@
 }
 
 
-#inputsearch::placeholder {
+#inv-inputsearch::placeholder {
   color: white;
   opacity: 0.8;
   font-size: 16px;
@@ -97,4 +117,116 @@
 .blurred {
   filter: blur(5px);
   transition: 0.2s ease;
+}
+
+
+
+  @media (max-width: 768px) {
+
+  /* Show mobile header */
+  .inv-mobile-header {
+    display: flex;
+  }
+
+  /* Hide desktop sidebar and search */
+  .inv-sidebar-wrapper {
+    display: none;
+  }
+  .searchbar {
+    display: none;
+  }
+
+  /* Right wrapper full width */
+  .inv-rightHome-wrapper {
+    width: 100%;
+    padding: 10px 15px;
+  }
+
+  /* Cards stacked */
+  .overall-invoice, .invoiceTable {
+    margin: 10px 0;
+  }
+}
+
+@media (max-width: 768px) {
+
+  /* ===== SHOW MOBILE HEADER ===== */
+  .inv-mobile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    background: #424457;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+
+  /* ===== MAIN LAYOUT STACK ===== */
+  .invoices-wrapper {
+    flex-direction: column;
+    height: auto;
+    min-height: 100vh;
+    padding-bottom: 70px; /* space for bottom navbar */
+    box-sizing: border-box;
+  }
+
+  /* ===== RIGHT SIDE FULL WIDTH ===== */
+  .inv-rightHome-wrapper {
+    width: 100%;
+    height: auto;
+    padding: 10px 15px;
+  }
+
+  /* ===== HIDE DESKTOP SIDEBAR ===== */
+  .inv-sidebar-wrapper {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 65px;
+    background: #2f3142;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    z-index: 1000;
+  }
+
+  /* Make sidebar items horizontal */
+  .inv-sidebar-wrapper .sidebar {
+    flex-direction: row !important;
+    width: 100%;
+    height: 100%;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  /* Hide sidebar title/logo if present */
+  .inv-sidebar-wrapper .sidebar-header,
+  .inv-sidebar-wrapper h2 {
+    display: none;
+  }
+
+  /* Resize sidebar icons */
+  .inv-sidebar-wrapper img {
+    width: 22px;
+    height: 22px;
+  }
+
+  /* Hide desktop title */
+  #inv-h1 {
+    display: none;
+  }
+
+  /* Hide search on mobile */
+  .inv-searchbar {
+    display: none;
+  }
+
+  /* Stack cards nicely */
+  .overall-invoice,
+  .invoiceTable {
+    margin: 10px 0;
+  }
 }

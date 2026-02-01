@@ -1,264 +1,53 @@
-/* .home-wrapper {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  height: 100vh;
-}
 
-.sidebar-wrapper {
-  width: 20%;
-  height: 100%;
+
+
+body {
   margin: 0;
+  overflow-x: hidden;
 }
 
-.rightHome-wrapper {
-  width: 80%;
-  height: 100%;
-  background-color: #424457;
-}
-
-.section1 {
-  display: flex;
-  width: 100%;
-  gap: 10px;
-  padding: 10px;
-  box-sizing: border-box;
-}
-
-.salesOverview {
-  flex: 7; 
-  display: flex;
-  flex-direction: column;
-  border-radius: 16px;
-  background-color: #ffffff;
-  padding-left: 20px;
-  padding-right: 20px;
-  box-sizing: border-box;
-}
-
-.inventorySummary {
-  flex: 3; 
-  display: flex;
-  flex-direction: column;
-  border-radius: 16px;
-  background-color: #ffffff;
-  padding-left: 20px;
-  padding-right: 20px;
-  box-sizing: border-box;
-}
-
-.section2 {
-  display: flex;
-  width: 100%;
-  gap: 10px;
-  padding: 10px;
-  box-sizing: border-box;
-}
-
-.purchaseOverview {
-  flex: 7; 
-  display: flex;
-  flex-direction: column;
-  border-radius: 16px;
-  background-color: #ffffff;
-  padding-left: 20px;
-  padding-right: 20px;
-  box-sizing: border-box;
-}
-
-.productSummary {
-  flex: 3; 
-  display: flex;
-  flex-direction: column;
-  border-radius: 16px;
-  background-color: #ffffff;
-  padding-left: 20px;
-  padding-right: 20px;
-  box-sizing: border-box;
-}
-
-.section3 {
-  display: flex;
-  width: 100%;
-  gap: 10px;
-  padding: 10px;
-  box-sizing: border-box;
-}
-
-.salesPurchase {
-  flex: 7; 
-  display: flex;
-  flex-direction: column;
-  border-radius: 16px;
-  background-color: #ffffff;
-  padding-left: 20px;
-  padding-right: 20px;
-  box-sizing: border-box;
-}
-
-.topProducts {
-  flex: 3; 
-  display: flex;
-  flex-direction: column;
-  border-radius: 16px;
-  background-color: #ffffff;
-  padding-left: 20px;
-  padding-right: 20px;
-  box-sizing: border-box;
-}
-
-
-#h-h1{
-  font-size: 18px;
-  color: #ffffff;
-  padding: 10px;
-}
-
-.custom-line-6{
-  background-color: #ffffff;
-}
-
-@media(max-width : 768px) {
-  .home-wrapper {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 100vh;
-}
-
-.sidebar-wrapper {
+.mobile-header{
   display: none;
+ 
 }
 
-.rightHome-wrapper {
-  width: 80%;
-  height: 100%;
-  background-color: #424457;
+#piemobile {
+  /* width: 40px; */
+   width: clamp(36px, 6vw, 44px);
+  height: 40px;
 }
 
-.section1 {
-  display: flex;
-  width: 100%;
-  gap: 10px;
-  padding: 10px;
-  box-sizing: border-box;
+#settings-mobile{
+   /* width: 15px; */
+    width: clamp(18px, 5vw, 24px);
+  height: 15px;
 }
 
-.salesOverview {
-  flex: 7; 
-  display: flex;
-  flex-direction: column;
-  border-radius: 16px;
-  background-color: #ffffff;
-  padding-left: 20px;
-  padding-right: 20px;
-  box-sizing: border-box;
-}
-
-.inventorySummary {
-  flex: 3; 
-  display: flex;
-  flex-direction: column;
-  border-radius: 16px;
-  background-color: #ffffff;
-  padding-left: 20px;
-  padding-right: 20px;
-  box-sizing: border-box;
-}
-
-.section2 {
-  display: flex;
-  width: 100%;
-  gap: 10px;
-  padding: 10px;
-  box-sizing: border-box;
-}
-
-.purchaseOverview {
-  flex: 7; 
-  display: flex;
-  flex-direction: column;
-  border-radius: 16px;
-  background-color: #ffffff;
-  padding-left: 20px;
-  padding-right: 20px;
-  box-sizing: border-box;
-}
-
-.productSummary {
-  flex: 3; 
-  display: flex;
-  flex-direction: column;
-  border-radius: 16px;
-  background-color: #ffffff;
-  padding-left: 20px;
-  padding-right: 20px;
-  box-sizing: border-box;
-}
-
-.section3 {
-  display: flex;
-  width: 100%;
-  gap: 10px;
-  padding: 10px;
-  box-sizing: border-box;
-}
-
-.salesPurchase {
-  flex: 7; 
-  display: flex;
-  flex-direction: column;
-  border-radius: 16px;
-  background-color: #ffffff;
-  padding-left: 20px;
-  padding-right: 20px;
-  box-sizing: border-box;
-}
-
-.topProducts {
-  flex: 3; 
-  display: flex;
-  flex-direction: column;
-  border-radius: 16px;
-  background-color: #ffffff;
-  padding-left: 20px;
-  padding-right: 20px;
-  box-sizing: border-box;
-}
-
-
-#h-h1{
-  font-size: 18px;
-  color: #ffffff;
-  padding: 10px;
-}
-
-.custom-line-6{
-  background-color: #ffffff;
-}
-
-} */
-
-/* ============================ GENERAL ============================ */
 .home-wrapper {
   display: flex;
-  flex-direction: row;
+  /* flex-direction: row; */
   width: 100%;
-  min-height: 100vh;
+  height: 100%;
+  /* min-height: 100vh; */
   background-color: #424457;
 }
 
 .sidebar-wrapper {
   width: 20%;
+  min-width: 220px;
+  
 }
 
 .rightHome-wrapper {
   width: 80%;
   padding: clamp(10px, 2vw, 20px);
+  margin: 0;
   box-sizing: border-box;
+  overflow-y: auto;
+  gap: 10px;
 }
 
-/* ============================ HEADER ============================ */
+
 .header-wrapper {
   display: flex;
   align-items: center;
@@ -266,10 +55,10 @@
   margin-bottom: clamp(10px, 1.5vw, 20px);
 }
 
-#h-h1 {
+#hr-h1 {
   font-size: clamp(16px, 2vw, 24px);
   color: #ffffff;
-  margin: 0;
+  margin-bottom: 10px;
 }
 
 .pieFrame {
@@ -290,86 +79,119 @@
   margin-bottom: clamp(10px, 2vw, 20px);
 }
 
-/* ============================ SECTIONS ============================ */
-.section1, .section2, .section3 {
-  display: flex;
-  gap: clamp(10px, 1.5vw, 20px);
-  margin-bottom: clamp(10px, 2vw, 20px);
+
+.section1-home, .section2-home, .section3-home {
+
+  display: grid;
+  grid-template-columns: 2fr 1fr; 
+  gap: clamp(12px, 2vw, 20px);
+  margin: 10px 0;
+
+  margin: 10px;
 }
 
-/* Default desktop flex */
 .salesOverview, .purchaseOverview, .salesPurchase {
   flex: 7;
-  display: flex;
-  flex-direction: column;
   border-radius: 16px;
   background-color: #ffffff;
-  padding: clamp(10px, 1.5vw, 20px);
-  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 .inventorySummary, .productSummary, .topProducts {
   flex: 3;
-  display: flex;
-  flex-direction: column;
   border-radius: 16px;
   background-color: #ffffff;
-  padding: clamp(10px, 1.5vw, 20px);
-  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+ 
 }
 
-/* ============================ RESPONSIVE ============================ */
-@media (max-width: 768px) {
-  .home-wrapper {
-    flex-direction: column;
-  }
 
-  .sidebar-wrapper {
-    display: none;
+
+@media (max-width: 1024px) {
+  .section1-home,
+  .section2-home,
+  .section3-home {
+    grid-template-columns: 1fr; 
+    row-gap: 10px;
+  }
+}
+@media (max-width: 768px) {
+
+  .home-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 100%;
   }
 
   .rightHome-wrapper {
-    width: 100%;
+    width: 100% ;
+    max-width: 100% ;
+    padding-left: clamp(12px, 4vw, 18px);
+    padding-right: clamp(12px, 4vw, 18px);
+    box-sizing: border-box;
   }
 
-  .header-wrapper {
+  /* Hide desktop sidebar */
+  .sidebar-wrapper {
+    display: none;
+    width: 0
+  }
+
+  /* Show mobile header */
+  .mobile-header {
+    display: flex;
     justify-content: space-between;
-    flex-wrap: wrap;
+    align-items: center;
+    padding: clamp(10px, 4vw, 16px);
+    width: 100%;
+  box-sizing: border-box;
   }
 
-  /* Stack sections vertically */
-  .section1, .section2, .section3 {
+  #settings-mobile {
+  width: clamp(20px, 5vw, 26px);
+  height: clamp(20px, 5vw, 26px);
+  object-fit: contain;
+  flex-shrink: 0; 
+}
+
+  #piemobile {
+  width: clamp(34px, 7vw, 44px);
+  height: auto;
+  flex-shrink: 0;
+}
+  .rightHome-wrapper {
+    width: 100%;
+    padding: clamp(10px, 4vw, 16px);
+    padding-bottom: 80px; 
+    /* max-height: 100%; */
+  }
+
+  #hr-h1 {
+   display: none;
+  }
+
+  .custom-line-6{
+    display: none;
+  }
+
+  
+  .section1-home, .section2-home, .section3-home {
     flex-direction: column;
+    width: 100%;
+    margin-bottom: 16px; 
+    gap: 16px; 
   }
 
   .salesOverview, .purchaseOverview, .salesPurchase,
   .inventorySummary, .productSummary, .topProducts {
+    width: 100%;
+    max-width: 100%;
     flex: unset;
-    width: 100%;
-  }
-
-  #h-h1 {
-    font-size: clamp(18px, 5vw, 24px);
-    text-align: center;
-    width: 100%;
-  }
-
-  .pieFrame {
-    margin-right: auto;
-  }
-
-  .settings-icon {
-    margin-left: auto;
+    padding: 12px;
+    border-radius: 16px;
   }
 }
 
-/* Optional: Medium screens scaling with clamp */
-@media (min-width: 769px) and (max-width: 1200px) {
-  #h-h1 {
-    font-size: clamp(18px, 2vw, 22px);
-  }
-
-  .salesOverview, .purchaseOverview, .salesPurchase {
-    padding: clamp(10px, 1.5vw, 16px);
-  }
-}

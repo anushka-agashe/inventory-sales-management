@@ -8,11 +8,15 @@ import "../styles/Products/Products.css";
 import searchImg from "../assets/icons/Search.png";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import pieFrame from "../assets/images/pieFrame.png";
+import settingsIcon from "../assets/icons/logo_setting.png";
+
+import { Link } from "react-router-dom";
 
 const Products = () => {
   const [search, setSearch] = useState("");
   const [showModal, setShowModal] = useState(false);
-  // const [showIndividualForm, setShowIndividualForm] = useState(false);
+
   const [showBulkModal, setShowBulkModal] = useState(false);
 
   const navigate = useNavigate();
@@ -24,19 +28,22 @@ const Products = () => {
 
   return (
     <div className="products-wrapper">
-      <div className="sidebar-wrapper">
+      <div className="mobile-header">
+        <img id="piemobile" src={pieFrame} alt="Pie Frame" />
+        <Link to="/settings">
+          <img id="settings-mobile" src={settingsIcon} alt="Settings" />
+        </Link>
+      </div>
+
+      <div className="product-sidebar-wrapper">
         <Sidebar />
       </div>
-      <div className={`rightHome-wrapper ${showModal ? "blurred" : ""}`}>
+      <div className={`productrightHome-wrapper ${showModal ? "blurred" : ""}`}>
         <div className="titlebar">
           <h1 id="p-h1">Products</h1>
           <div className="searchbar">
             <div className="search-input-wrapper">
-              <img
-                src={searchImg}
-                alt="search"
-                className="search-icon"
-              />
+              <img src={searchImg} alt="search" className="search-icon" />
               <input
                 id="inputsearch"
                 type="text"
@@ -65,20 +72,19 @@ const Products = () => {
           onClose={() => setShowModal(false)}
           onIndividualClick={handleIndividualClick}
           onBulkClick={() => {
-          setShowModal(false);
-           setShowBulkModal(true);
-         }}
+            setShowModal(false);
+            setShowBulkModal(true);
+          }}
         />
       )}
 
-{showBulkModal && (
-      <div className="modal-overlay" onClick={() => setShowBulkModal(false)}>
-         <div onClick={(e) => e.stopPropagation()}>
-           <BulkProductUpload onClose={() => setShowBulkModal(false)} />
-         </div>
-       </div>
-     )}
-
+      {showBulkModal && (
+        <div className="modal-overlay" onClick={() => setShowBulkModal(false)}>
+          <div onClick={(e) => e.stopPropagation()}>
+            <BulkProductUpload onClose={() => setShowBulkModal(false)} />
+          </div>
+        </div>
+      )}
     </div>
   );
 };

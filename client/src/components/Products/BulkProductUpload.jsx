@@ -1,6 +1,6 @@
 import "../../styles/Products/BulkProductUpload.css";
 import fileIcon from "../../assets/icons/upload.png";
-import preview from '../../assets/icons/flowbite_file-csv-solid.png'
+import preview from "../../assets/icons/flowbite_file-csv-solid.png";
 import { useState } from "react";
 import axios from "axios";
 
@@ -19,19 +19,17 @@ const BulkProductUpload = ({ onClose }) => {
     }
   };
 
-
   const handleNext = () => {
     if (!file) return setError("Please select a CSV file");
     setPreviewMode(true);
   };
 
-   const handleRemoveFile = () => {
+  const handleRemoveFile = () => {
     setFile(null);
     setPreviewMode(false);
   };
 
   const handleUpload = async () => {
-
     // if (!file) return setError("Please select a CSV file");
 
     try {
@@ -66,50 +64,39 @@ const BulkProductUpload = ({ onClose }) => {
       <p className="txt">Add your documents here</p>
       <div className="file-container">
         <img className="file-icon" src={fileIcon} alt="" />
-        <p className="instructionTxt">
-          Drag your file(s) to start uploading
-          </p>
-          <div className="orTextSection">
-            <hr className="line" />
-            <p className="ortxt">OR</p>
-            <hr className="line" />
-          </div>
+        <p className="instructionTxt">Drag your file(s) to start uploading</p>
+        <div className="orTextSection">
+          <hr className="line" />
+          <p className="ortxt">OR</p>
+          <hr className="line" />
+        </div>
 
-          {/* <button className="browse" >Browse files</button> */}
-          <label className="browse">
-            Browse files
-            <input
-              type="file"
-              accept=".csv"
-              hidden
-              onChange={handleFileChange}
-            />
-          </label>
-        
+        <label className="browse">
+          Browse files
+          <input type="file" accept=".csv" hidden onChange={handleFileChange} />
+        </label>
       </div>
 
-      {/* {file && <p style={{ textAlign: "center" }}>{file.name}</p>} */}
       {error && <p style={{ color: "red", textAlign: "center" }}>{error}</p>}
 
-
-       {previewMode && file && (
+      {previewMode && file && (
         <div className="file-preview">
           <img src={preview} alt="file" className="preview-icon" />
           <div className="file-info">
             <p className="file-name">{file.name}</p>
             <p className="file-size">{formatSize(file.size)}</p>
           </div>
-          <button className="remove-file" onClick={handleRemoveFile}>✕</button>
+          <button className="remove-file" onClick={handleRemoveFile}>
+            ✕
+          </button>
         </div>
-      )}  
+      )}
 
       <div className="modal-actions">
-        <button className="cancel-btn" onClick={onClose}>
+        <button className="action-cancel-btn" onClick={onClose}>
           Cancel
         </button>
-        {/* <button className="next-btn" onClick={handleUpload}>
-          Next  &gt;
-        </button> */}
+
         {!previewMode ? (
           <button className="next-btn" onClick={handleNext}>
             Next &gt;

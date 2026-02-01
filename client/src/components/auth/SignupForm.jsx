@@ -70,10 +70,10 @@ const SignupForm = () => {
 
   return (
     <div className="signupContainer">
-      <h1 id="intro-h1">Create an account</h1>
-      <p id="intro-p">Start inventory management.</p>
+      <h1 id="signup-intro-h1">Create an account</h1>
+      <p id="signup-intro-p">Start inventory management.</p>
       <form action="" className="signupForm" onSubmit={handleSubmit}>
-        <label id="label">Name</label>
+        <label className="signup-label">Name</label>
         <input
           id="nameSignupInput"
           type="text"
@@ -84,7 +84,7 @@ const SignupForm = () => {
         />
         {errors.fullName && <p className="error">{errors.fullName}</p>}
 
-        <label id="label">Email</label>
+        <label className="signup-label">Email</label>
         <input
           id="emailSignupInput"
           type="email"
@@ -95,8 +95,8 @@ const SignupForm = () => {
         />
         {errors.email && <p className="error">{errors.email}</p>}
 
-        <label id="label">Create Password</label>
-        <div className="password-container">
+        <label className="signup-label">Create Password</label>
+        <div className="signup-password-container">
           <input
             id="passwordSignupInput"
             type={showPassword ? "text" : "password"}
@@ -109,14 +109,14 @@ const SignupForm = () => {
           <img
             src={eyeIcon}
             alt=""
-            className="eyeIcon"
+            className="signup-eyeIcon"
             onClick={() => setShowPassword(!showPassword)}
           />
         </div>
         {errors.password && <p className="error">{errors.password}</p>}
 
-        <label id="label">Confirm Password</label>
-        <div className="password-container">
+        <label className="signup-label">Confirm Password</label>
+        <div className="signup-password-container">
           <input
             id="passwordSignupInput"
             type={showPassword ? "text" : "password"}
@@ -129,7 +129,7 @@ const SignupForm = () => {
           <img
             src={eyeIcon}
             alt=""
-            className="eyeIcon"
+            className="signup-eyeIcon"
             onClick={() => setShowPassword(!showPassword)}
           />
         </div>

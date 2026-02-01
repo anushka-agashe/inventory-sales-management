@@ -91,8 +91,8 @@ ProductSchema.statics.insertBulk = async function (products, userId) {
 
 ProductSchema.statics.getProducts = async function (userId, search = "", page, limit) {
 
-    page = Number(page) || 1;
-    limit = Number(limit) || 10;
+    // page = Number(page) || 1;
+    // limit = Number(limit) || 7;
 
     const query = {
         userId,
@@ -100,6 +100,16 @@ ProductSchema.statics.getProducts = async function (userId, search = "", page, l
             { productName: { $regex: search, $options: "i" } }
         ]
     };
+
+    if (!limit) {
+        const products = await this.find(query).sort({ createdAt: -1 });
+        const total = products.length;
+        return { products, total };
+    }
+
+
+    page = Number(page) || 1;
+    limit = Number(limit);
 
     const products = await this.find(query)
         .skip((page - 1) * limit)

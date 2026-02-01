@@ -1,74 +1,122 @@
-.inventoryDashboard{
-    display: flex;
-    flex-direction: column;
-    background-color: #FFFFFF;
-
+.inventoryDashboard {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
 }
 
-
-
-.section{
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    padding: 10px;
-    justify-content: space-between;
+.section-inventory {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  padding: 10px;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 
-.productValues , .saleValues , .stockValues {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    justify-content: space-between;
+.productValues,
+.saleValues,
+.stockValues {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: space-between;
 }
 
-.categories{
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    padding-right: 20px;
-    margin-right: 20px;
+.categories {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-right: 20px;
+  margin-right: 20px;
 }
 
-.totalProducts ,.topSelling , .lowStocks,
-.productCount, 
-.revenueValue, 
-.saleCount , 
+.totalProducts,
+.topSelling,
+.lowStocks,
+.productCount,
+.revenueValue,
+.saleCount,
 .saleValue,
 .lowStockCount,
-.outOfStockCount{
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-   flex: 1;    
-} 
+.outOfStockCount {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
 
 .vertical-line {
-  border-left: 2px solid #ccc; 
-  height: 50px;              
-padding: 20px;
-
+  border-left: 2px solid #ccc;
+  height: 80px;
+  padding: 5px;
 }
 
-.p-titleName{
-    color: #424242;
-    font-size: 20px;
-    /* padding-bottom: 20px; */
-    margin: 5px;
-    padding: 5px;
+.p-titleName {
+  color: #424242;
+  font-size: 20px;
+  /* padding-bottom: 20px; */
+  margin: 5px;
+  padding: 5px;
 }
 
-.p-h3{
-    font-size: 16px;
-    color: black;
+.p-h3 {
+  font-size: 16px;
+  color: black;
 }
 
-.p-p1{
-    font-size: 16px;
-    color: #757575;
+.p-p1 {
+  font-size: 16px;
+  color: #757575;
 }
 
-.p-p2{
-    font-size: 16px;
-    color: #BDBDBD;
+.p-p2 {
+  font-size: 16px;
+  color: #bdbdbd;
+}
+
+.categories, .totalProducts, .topSelling, .lowStocks {
+  min-width: 0; 
+}
+
+@media (max-width: 1024px) {
+  .section-inventory > div {
+    flex: 1 1 45%;   
+  }
+
+  .vertical-line {
+    display: none;   
+  }
+}
+
+@media (max-width: 600px) {
+
+  /* Let sections shrink to content height */
+  .inventoryDashboard {
+    height: auto;
+    min-height: unset;
+  }
+
+  .section-inventory {
+    height: auto;
+    min-height: unset;
+    align-items: stretch;
+  }
+
+  /* Remove forced equal height behavior */
+  .categories,
+  .totalProducts,
+  .topSelling,
+  .lowStocks {
+    flex: unset;
+    height: auto;
+    min-height: unset;
+  }
+
+  /* Prevent inner flex rows from stretching parent */
+  .productValues,
+  .saleValues,
+  .stockValues {
+    align-items: flex-start;
+  }
+
 }

@@ -10,12 +10,14 @@
   justify-content: center;
   align-items: center;
   z-index: 1000;
+  padding: 10px;
 }
 
 .buyProductModal {
   background: #E2E5E4;
-  width: 550px ;
-    height: 350px;
+  max-width: 550px;
+  width: 100% ;
+  height: 350px;
   border-radius: 16px;
   padding: 25px;
   display: flex;
@@ -23,6 +25,8 @@
   justify-content: center;
   align-items: center;
   gap: 18px;
+  box-sizing: border-box;
+  /* flex-wrap: wrap; */
   /* margin: 40px; */
 }
 /* 
@@ -41,19 +45,23 @@
 .buyDiv{
     background-color: #242531;
     border-radius: 8px ;
-    width: 320px ;
+    width: 100%;
+  max-width: 320px;
     height: 70px;
     padding: 10px;
-    margin: 0px;
+    margin: 0;
     display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 .buyDiv h2{
 color: #FAFBFC;
     font-size: 18px;
     margin: 0px;
+    margin: 0;
+  text-align: center;
 }
 
 .buyInput{
@@ -61,13 +69,15 @@ color: #FAFBFC;
     color: #FAFBFC;
     font-size: 18px;
     border-radius: 8px ;
-    width: 320px ;
+    width: 100%;
+  max-width: 320px;
     height: 70px;
     
     padding: 10px;
      margin: 0px;
      border: none;
   outline: none;
+  box-sizing: border-box;
 }
 
 .buyBtn{
@@ -75,14 +85,72 @@ color: #FAFBFC;
     color: #FAFBFC;
     font-size: 14px;
     border-radius: 8px ;
-    width: 120px ;
+    width: 100%;
+  max-width: 120px;
     height: 35px;
     padding: 5px;
      margin: 0px;
+     margin-top: 10px;
      border: none;
   cursor: pointer;
 }
 .errorText {
   color: red;
   font-size: 14px;
+  text-align: center;
+}
+
+@media (max-width: 786px) {
+  .buyProductModal {
+    padding: 15px;
+    gap: 12px;
+  }
+
+  .buyDiv {
+    height: 60px;
+  }
+
+  .buyDiv h2 {
+    font-size: 16px;
+  }
+
+  .buyInput {
+    height: 50px;
+    font-size: 14px;
+  }
+
+  .buyBtn {
+    max-width: 100px;
+    height: 30px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 600px) {
+  .buyProductModal {
+    width: 80%;        
+    max-width: 250px;  
+    height: auto;      
+    padding: 15px;
+    gap: 12px;
+  }
+
+  .buyDiv {
+    height: 60px;
+  }
+
+  .buyDiv h2 {
+    font-size: 16px;
+  }
+
+  .buyInput {
+    height: 50px;
+    font-size: 14px;
+  }
+
+  .buyBtn {
+    max-width: 100px;
+    height: 30px;
+    font-size: 13px;
+  }
 }

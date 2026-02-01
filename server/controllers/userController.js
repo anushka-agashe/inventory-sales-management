@@ -1,4 +1,4 @@
-
+const sendOtpEmail= require('../utils/emailService.js')
 const User = require('../models/UserModel.js')
 const createToken = require('../utils/token.js');
 
@@ -68,10 +68,13 @@ const sendOtp = async (req, res) => {
     const { email } = req.body;
     try {
         const otp = await User.sendOtp(email);
+
+        await sendOtpEmail(email, otp);
+
         res.status(200).json({
             success: true,
-            message: "OTP sent successfully",
-            otp
+            message: "OTP sent to email (check preview URL in server console)",
+            // otp
         })
 
     } catch (err) {

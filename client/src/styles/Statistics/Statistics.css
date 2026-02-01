@@ -5,18 +5,18 @@
   height: 100vh;
 }
 
-.sidebar-wrapper {
+.stat-sidebar-wrapper {
   width: 20%;
   height: 100%;
 }
 
-.rightHome-wrapper {
+.stat-rightHome-wrapper {
   width: 80%;
   height: 100%;
   background-color: #424457;
 }
 
-.section1 {
+.stat-section1 {
   display: flex;
   /* flex-direction: row; */
   width: 100%;
@@ -59,7 +59,7 @@
 }
 
 
-.section2 {
+.stat-section2 {
   display: flex;
   width: 100%;
   gap: 10px;
@@ -87,4 +87,162 @@
   padding-left: 20px;
   padding-right: 20px;
   box-sizing: border-box;
+}
+
+/*  */
+
+.statistics-wrapper {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  min-height: 100vh; /* better than fixed height */
+}
+
+.stat-rightHome-wrapper {
+  width: 80%;
+  background-color: #424457;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+#st-h1 {
+  font-size: clamp(18px, 2.5vw, 26px);
+  color: white;
+  margin: 10px;
+}
+
+.titleName {
+  font-size: clamp(12px, 1.4vw, 16px);
+}
+
+.fig {
+  font-size: clamp(20px, 3vw, 28px);
+  font-weight: 600;
+}
+
+.comment {
+  font-size: clamp(11px, 1.2vw, 14px);
+}
+
+
+.stat-mobile-header {
+  display: none; /* hidden on desktop */
+  /* width: 100%;
+  height: 60px;
+  background-color: #2c2f4a;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  box-sizing: border-box; */
+}
+
+.stat-mobile-header .header-icon {
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+}
+/* 
+@media(max-width:768px){
+  .stat-section1{
+    flex-direction: row;
+  }
+
+  .topProducts{
+    display: none;
+  }
+} */
+
+@media (max-width: 768px) {
+
+  .statistics-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .stat-rightHome-wrapper {
+    width: 100% ;
+    max-width: 100% ;
+    padding-left: clamp(12px, 4vw, 18px);
+    padding-right: clamp(12px, 4vw, 18px);
+    box-sizing: border-box;
+  }
+
+  /* Hide desktop sidebar */
+  
+  .stat-sidebar-wrapper {
+    width: 100%;
+    height: 60px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+  }
+  
+
+  /* Show mobile header */
+  .stat-mobile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: clamp(10px, 4vw, 16px);
+    width: 100%;
+  box-sizing: border-box;
+  background-color: #424457
+  }
+
+  #stat-settings-mobile {
+  width: clamp(20px, 5vw, 26px);
+  height: clamp(20px, 5vw, 26px);
+  object-fit: contain;
+  flex-shrink: 0; 
+}
+
+  #st-piemobile {
+  width: clamp(34px, 7vw, 44px);
+  height: auto;
+  flex-shrink: 0;
+}
+  .stat-rightHome-wrapper {
+    width: 100%;
+    padding: clamp(10px, 4vw, 16px);
+    padding-bottom: 80px; /* space for bottom nav if present */
+    /* max-height: 100%; */
+  }
+
+  #st-h1 {
+   display: none;
+  }
+
+  .custom-line-6{
+    display: none;
+  }
+
+  /* Hide topProducts on mobile */
+  .topProducts {
+    display: none;
+  }
+
+  /* Stack section1 vertically */
+  .stat-section1, .stat-section2 {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .totalRevenue, .productsSold, .productsStock, .salesPurchase {
+   width: 100%;
+    max-width: 100%;
+    flex: unset;
+  }
+
+  /* Adjust header title */
+  #st-h1 {
+    font-size: 18px;
+    color: white;
+    margin: 0;
+    text-align: center;
+    flex: 1;
+  }
 }

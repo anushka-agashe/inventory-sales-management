@@ -6,20 +6,19 @@ import '../../styles/auth/Signup.css'
 const SignUp = () => {
   return (
     <div className="signup">
-          <div className="sidebar">
+          <div className="signup-sidebar">
             <SignupForm />
           </div>
-          {window.innerWidth > 768 && (
-          <div className="heroSection">
-            <div className="section1">
-              <div className="heading">
+           <div className="signup-heroSection">
+            <div className="section-signup">
+              <div className="heading-signup">
                 <h1>Welcome to</h1>
                 <h1>Company Name</h1>
               </div>
-              <img id="pieFrame" src={pieFrame} alt="" />
+              <img id="signup-pieFrame" src={pieFrame} alt="" />
             </div>
             <img id='signupHero' src={loginHero} alt="" />
-          </div>)}
+          </div>
         </div>
   )
 }

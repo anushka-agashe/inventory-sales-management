@@ -19,14 +19,14 @@ const ForgetPassword = () => {
   }
 
   return (
-    <div className="forgetEmail">
-      <div className="sidebar">
+    <div className="forgetPassword">
+      <div className="fp-sidebar">
         {/* <ForgetPasswordForm /> */}
         {step === 1 && <ForgetPasswordForm onNext={() => setStep(2)} setEmail={setEmail}  />}
         {step === 2 && <OTPVerificationForm onNext={() => setStep(3)} setOtp={setOtp}  />}
         {step === 3 && <ResetPasswordForm email={email} otp={otp} />}
       </div>
-      <div className="heroSection">
+      <div className="fp-heroSection">
         <img id="heroImg2" src={heroImages[step]} alt="" />
       </div>
     </div>

@@ -13,26 +13,21 @@ const OverallInventory = () => {
     outOfStock: 0,
   });
 
-
-
   const fetchDashboardSummary = async () => {
     try {
       const token = localStorage.getItem("token");
 
-      const res = await axios.get(
-        "http://localhost:4000/api/stats/summary",
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        },
-      );
+      const res = await axios.get("http://localhost:4000/api/stats/summary", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
 
       const data = res.data;
       setSummary({
-        categories: data.totalCategories, 
-        totalProducts: data.totalQuantity, 
-        totalRevenue: data.totalAmount,    
-        topSellingCount: data.totalOrders || 0, 
-        topSellingRevenue: data.topRevenue || 0, 
+        categories: data.totalCategories,
+        totalProducts: data.totalQuantity,
+        totalRevenue: data.totalAmount,
+        topProductsCount: data.topProductsCount || 0,
+        topSellingRevenue: data.topRevenue || 0,
         lowStock: data.lowStock,
         outOfStock: data.outOfStock,
       });
@@ -41,14 +36,14 @@ const OverallInventory = () => {
     }
   };
 
- useEffect(() => {
+  useEffect(() => {
     fetchDashboardSummary();
 
     const handleUpdate = () => {
       fetchDashboardSummary();
     };
 
-    window.addEventListener("productsUpdated", handleUpdate); 
+    window.addEventListener("productsUpdated", handleUpdate);
 
     return () => {
       window.removeEventListener("productsUpdated", handleUpdate);
@@ -57,7 +52,7 @@ const OverallInventory = () => {
 
   return (
     <div className="inventoryDashboard">
-      <div className="section">
+      <div className="section-inventory">
         <div className="categories">
           <h3 className="p-h3">Categories</h3>
           <p className="p-p1">{summary.categories}</p>
@@ -86,7 +81,7 @@ const OverallInventory = () => {
           <h3 className="p-h3">Top Selling</h3>
           <div className="saleValues">
             <div className="saleCount">
-              <p className="p-p1">6</p>
+              <p className="p-p1">{summary.topProductsCount}</p>
               <p className="p-p2">Last 7 days</p>
             </div>
             <div className="saleValue">

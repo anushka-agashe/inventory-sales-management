@@ -5,18 +5,28 @@ import ProductsSold from "../components/Statistics/ProductsSold.jsx"
 import SalesPurchase from "../components/Home/SalesPurchase.jsx"
 import TopProducts from "../components/Home/TopProducts.jsx"
 import '../styles/Statistics/statistics.css'
+import pieFrame from '../assets/images/pieFrame.png'
+import settingsIcon from '../assets/icons/logo_setting.png'
+import { Link } from "react-router-dom"
 
 const Statistics = () => {
   return (
     <div className="statistics-wrapper">
       
-      <div className="sidebar-wrapper">
+       <div className="stat-mobile-header">
+              <img id="st-piemobile" src={pieFrame} alt="Pie Frame" />
+              <Link to="/settings">
+                <img id="st-settings-mobile" src={settingsIcon} alt="Settings" />
+              </Link>
+            </div>
+
+      <div className="stat-sidebar-wrapper">
         <Sidebar />
       </div>
-      <div className="rightHome-wrapper">
-        <h1 id="h-h1">Home</h1>
+      <div className="stat-rightHome-wrapper">
+        <h1 id="st-h1">Home</h1>
       <hr className="custom-line-6"/>
-        <div className="section1">
+        <div className="stat-section1">
           <div className="totalRevenue">
             <TotalRevenue />
           </div>
@@ -27,7 +37,7 @@ const Statistics = () => {
             <ProductStock />
           </div>
         </div>
-        <div className="section2">
+        <div className="stat-section2">
           <div className="salesPurchase">
             < SalesPurchase/>
           </div>

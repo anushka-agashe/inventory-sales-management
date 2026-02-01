@@ -13,12 +13,12 @@ const OTPVerificationForm = ({ onNext, setOtp }) => {
   };
   return (
     <div className="otpVerificationContainer">
-      <h1 id="intro-h1">Enter Your OTP</h1>
-      <p id="intro-p">We’ve sent a 6-digit OTP to your </p>
-      <p id="intro-p">registered mail.</p>
-      <p id="intro-p">Please enter it below to sign in.</p>
+      <h1 id="otp-intro-h1">Enter Your OTP</h1>
+      <p className="otp-intro-p">We’ve sent a 6-digit OTP to your </p>
+      <p className="otp-intro-p">registered mail.</p>
+      <p className="otp-intro-p">Please enter it below to sign in.</p>
       <form action="" className="otpVerificationForm" onSubmit={handleSubmit}>
-        <label id="label" htmlFor="otp">
+        <label id="otp-label" htmlFor="otp">
           OTP
         </label>
         <input

@@ -3,7 +3,8 @@ import "../../styles/auth/ResetPasswordForm.css";
 import eyeIcon from "../../assets/icons/eyeIcon.png";
 
 const ResetPasswordForm = ({ email, otp }) => {
-  const [showPassword, setShowPassword] = useState(false);
+  const [showNewPassword, setShowNewPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
@@ -13,7 +14,6 @@ const ResetPasswordForm = ({ email, otp }) => {
     e.preventDefault();
     setError("");
     setSuccess("");
-    // alert("Password reset successful!");
 
     if (!password || !confirmPassword)
       return setError("All fields are required");
@@ -38,18 +38,20 @@ const ResetPasswordForm = ({ email, otp }) => {
 
   return (
     <div className="resetPasswordContainer">
-      <h1 id="intro-h1">Create New Password</h1>
-      <p id="intro-p">Today is a new day. It's your day. You shape it. </p>
-      <p id="intro-p">Sign in to start managing your projects.</p>
+      <h1 id="rp-intro-h1">Create New Password</h1>
+      <p className="rp-intro-p">
+        Today is a new day. It's your day. You shape it.{" "}
+      </p>
+      <p className="rp-intro-p">Sign in to start managing your projects.</p>
 
       <form action="" className="resetPasswordForm" onSubmit={handleSubmit}>
-        <label id="label" htmlFor="new-password">
+        <label className="rp-label" htmlFor="new-password">
           Enter New Password
         </label>
-        <div className="password-container">
+        <div className="rp-password-container">
           <input
-            id="passwordLoginInput"
-            type={showPassword ? "text" : "password"}
+            className="rp-passwordLoginInput"
+            type={showNewPassword ? "text" : "password"}
             name="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -59,18 +61,18 @@ const ResetPasswordForm = ({ email, otp }) => {
           <img
             src={eyeIcon}
             alt=""
-            className="eyeIcon"
-            onClick={() => setShowPassword(!showPassword)}
+            className="rp-eyeIcon"
+            onClick={() => setShowNewPassword(!showNewPassword)}
           />
         </div>
-        <label id="label" htmlFor="confirm-password">
+        <label className="rp-label" htmlFor="confirm-password">
           Confirm Password
         </label>
-        <div className="password-container">
+        <div className="rp-password-container">
           <input
-            id="passwordLoginInput"
-            type={showPassword ? "text" : "password"}
-            name="password"
+            className="rp-passwordLoginInput"
+            type={showConfirmPassword ? "text" : "password"}
+            name="cnf-password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             placeholder="at least 8 characters"
@@ -79,8 +81,8 @@ const ResetPasswordForm = ({ email, otp }) => {
           <img
             src={eyeIcon}
             alt=""
-            className="eyeIcon"
-            onClick={() => setShowPassword(!showPassword)}
+            className="rp-eyeIcon"
+            onClick={() => setShowConfirmPassword(!showConfirmPassword)}
           />
         </div>
 

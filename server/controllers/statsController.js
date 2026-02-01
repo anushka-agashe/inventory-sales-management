@@ -27,76 +27,7 @@ const getStatistics = async (req, res) => {
   }
 };
 
-// Top selling 
 
-// const getDashboardSummary = async (req, res) => {
-//   try {
-//     const userId = req.user.id; 
-//     const last7Days = new Date();
-//     last7Days.setDate(last7Days.getDate() - 7);
-
-//     // Recent products 
-//     const recentProducts = await Product.find({ userId, createdAt: { $gte: last7Days } });
-
-//     const totalQuantity = recentProducts.reduce((sum, p) => sum + (p.quantity || 0), 0);
-//     const totalAmount = recentProducts.reduce((sum, p) => sum + ((p.quantity || 0) * (p.price || 0)), 0);
-//     const totalOrders = recentProducts.reduce((sum, p) => sum + (p.totalSold || 0), 0);
-//     const totalCategories = new Set(recentProducts.map(p => p.category)).size;
-
-//     // Top selling products from invoices 
-//     const invoices = await Invoice.find({ userId, createdAt: { $gte: last7Days } });
-
-//     const productSalesMap = {};
-//     invoices.forEach(inv => {
-//       if (!inv.product || !inv.product.name) return;
-
-//       const pname = inv.product.name;
-
-//       if (!productSalesMap[pname])
-//         productSalesMap[pname] = { 
-//       quantity: 0, 
-//       amount: 0, 
-//       image: inv.product.image || "" };
-
-//       productSalesMap[pname].quantity += inv.quantity || 0;
-//       productSalesMap[pname].amount += inv.amount || 0;
-//     });
-
-//     // Sort top 6 products by quantity sold
-//     const topProducts = Object.entries(productSalesMap)
-//       .sort((a, b) => b[1].quantity - a[1].quantity)
-//       .slice(0, 6)
-//       .map(([name, data]) => ({
-//         name,
-//         quantity: data.quantity,
-//         amount: data.amount,
-//         image: data.image,
-//       }));
-
-//     const topRevenue = topProducts.reduce((sum, p) => sum + p.amount, 0);
-
-//     //  Stock info 
-//     const outOfStock = await Product.countDocuments({ userId, quantity: 0 });
-//     const lowStock = await Product.countDocuments({
-//       userId,
-//       $expr: { $and: [{ $gt: ["$quantity", 0] }, { $lte: ["$quantity", "$threshold"] }] },
-//     });
-
-//     res.json({
-//       totalCategories,
-//       totalQuantity,
-//       totalAmount,
-//       totalOrders,
-//       topRevenue,
-//       lowStock,
-//       outOfStock,
-//       topProducts, 
-//     });
-//   } catch (err) {
-//     console.error("Dashboard Summary Error:", err);
-//     res.status(500).json({ error: "Failed to fetch dashboard summary" });
-//   }
-// };
 
 const getDashboardSummary = async (req, res) => {
   try {
@@ -104,7 +35,7 @@ const getDashboardSummary = async (req, res) => {
     const last7Days = new Date();
     last7Days.setDate(last7Days.getDate() - 7);
 
-    // 🔹 Recent Products (Last 7 Days)
+    // Recent Products (Last 7 Days)
     const recentProducts = await Product.find({
       userId,
       createdAt: { $gte: last7Days },
@@ -123,7 +54,6 @@ const getDashboardSummary = async (req, res) => {
 
     const productSalesMap = {};
 
-    // 🔥 IMPORTANT: use for...of because we use await inside
     for (const inv of invoices) {
       if (!inv.product || !inv.product.name) continue;
 
@@ -154,7 +84,7 @@ const getDashboardSummary = async (req, res) => {
       productSalesMap[pname].amount += inv.amount || 0;
     }
 
-    // 🔹 Top 6 Products by Quantity Sold
+    //  Top 6 Products by Quantity Sold
     const topProducts = Object.entries(productSalesMap)
       .sort((a, b) => b[1].quantity - a[1].quantity)
       .slice(0, 6)
@@ -162,12 +92,15 @@ const getDashboardSummary = async (req, res) => {
         name,
         quantity: data.quantity,
         amount: data.amount,
-        image: data.image, // always valid now
+        image: data.image, 
       }));
+
+      const topProductsCount = topProducts.length;
+
 
     const topRevenue = topProducts.reduce((sum, p) => sum + p.amount, 0);
 
-    // 🔹 Stock Info
+    // Stock Info
     const outOfStock = await Product.countDocuments({ userId, quantity: 0 });
 
     const lowStock = await Product.countDocuments({
@@ -189,6 +122,7 @@ const getDashboardSummary = async (req, res) => {
       lowStock,
       outOfStock,
       topProducts,
+      topProductsCount
     });
 
   } catch (err) {

@@ -1,7 +1,7 @@
 import "../../styles/Home/SalesPurchase.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import calender from '../../assets/icons/Calendar.png'
+import calender from "../../assets/icons/Calendar.png";
 import {
   BarChart,
   Bar,
@@ -14,14 +14,32 @@ import {
 } from "recharts";
 
 const SalesPurchase = () => {
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 600);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 600);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const [range, setRange] = useState("weekly");
   const [data, setData] = useState([]);
   const [yMax, setYMax] = useState(5000);
   const displayCount = 5; // number of items to show at a time
 
   const monthNames = [
-    "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
   ];
 
   const getNextRange = (current) => {
@@ -80,94 +98,75 @@ const SalesPurchase = () => {
       const token = localStorage.getItem("token");
       const res = await axios.get(
         `http://localhost:4000/api/transactions/summary?range=${selectedRange}`,
-        { headers: { Authorization: `Bearer ${token}` } }
+        { headers: { Authorization: `Bearer ${token}` } },
       );
 
       let { labels, sales, purchases } = res.data;
 
       if (selectedRange === "weekly") {
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
 
-  const weeks = [];
+        const weeks = [];
 
-  // Step 1: Create 5 rolling week buckets ending today
-  for (let w = 4; w >= 0; w--) {
-    const endDate = new Date(today);
-    endDate.setDate(today.getDate() - w * 7);
+        for (let w = 4; w >= 0; w--) {
+          const endDate = new Date(today);
+          endDate.setDate(today.getDate() - w * 7);
 
-    const startDate = new Date(endDate);
-    startDate.setDate(endDate.getDate() - 6);
+          const startDate = new Date(endDate);
+          startDate.setDate(endDate.getDate() - 6);
 
-    weeks.push({
-      name: `${startDate.getDate()} ${monthNames[startDate.getMonth()]} - ${endDate.getDate()} ${monthNames[endDate.getMonth()]}`,
-      start: new Date(startDate),
-      end: new Date(endDate),
-      Sales: 0,
-      Purchases: 0,
-    });
-  }
+          weeks.push({
+            name: `${startDate.getDate()} ${monthNames[startDate.getMonth()]} - ${endDate.getDate()} ${monthNames[endDate.getMonth()]}`,
+            start: new Date(startDate),
+            end: new Date(endDate),
+            Sales: 0,
+            Purchases: 0,
+          });
+        }
 
-  // Step 2: Map backend transactions into correct week bucket
-  labels.forEach((label, i) => {
-    const txDate = new Date(label);
-    txDate.setHours(0, 0, 0, 0);
+        labels.forEach((label, i) => {
+          const txDate = new Date(label);
+          txDate.setHours(0, 0, 0, 0);
 
-    const bucket = weeks.find(
-      w => txDate >= w.start && txDate <= w.end
-    );
+          const bucket = weeks.find(
+            (w) => txDate >= w.start && txDate <= w.end,
+          );
 
-    if (bucket) {
-      bucket.Sales += sales[i] || 0;
-      bucket.Purchases += purchases[i] || 0;
-    }
-  });
+          if (bucket) {
+            bucket.Sales += sales[i] || 0;
+            bucket.Purchases += purchases[i] || 0;
+          }
+        });
 
-  setData(weeks);
+        setData(weeks);
 
-  const maxValue = Math.max(
-    ...weeks.map(d => d.Sales),
-    ...weeks.map(d => d.Purchases)
-  );
+        const maxValue = Math.max(
+          ...weeks.map((d) => d.Sales),
+          ...weeks.map((d) => d.Purchases),
+        );
 
-  const step = maxValue > 0 ? Math.pow(10, Math.floor(Math.log10(maxValue))) : 10;
-  setYMax(Math.ceil(maxValue / step) * step);
+        const step =
+          maxValue > 0 ? Math.pow(10, Math.floor(Math.log10(maxValue))) : 10;
+        setYMax(Math.ceil(maxValue / step) * step);
 
-  return;
-}
+        return;
+      }
 
       if (selectedRange === "monthly") {
         labels = generateMonthlyLabels();
         const now = new Date();
         const currentYear = now.getFullYear();
         const currentMonth = now.getMonth();
-        const currentIndex = labels.findIndex(l => l === `${monthNames[currentMonth]} ${currentYear}`);
-        labels = labels.slice(currentIndex - displayCount + 1 >= 0 ? currentIndex - displayCount + 1 : 0, currentIndex + 1);
-
-        if (sales.length < labels.length) {
-          const diff = labels.length - sales.length;
-          sales = [...Array(diff).fill(0), ...sales]; // pad beginning
-          purchases = [...Array(diff).fill(0), ...purchases];
-        }
-
-        const formatted = labels.map((label, i) => ({
-          name: label,
-          Sales: sales[i],
-          Purchases: purchases[i],
-        }));
-        setData(formatted);
-        const maxValue = Math.max(...formatted.map(d => d.Sales), ...formatted.map(d => d.Purchases));
-        const step = Math.pow(10, Math.floor(Math.log10(maxValue)));
-        setYMax(Math.ceil(maxValue / step) * step);
-        return;
-      }
-
-      if (selectedRange === "yearly") {
-        labels = generateYearlyLabels();
-        const now = new Date();
-        const currentYear = now.getFullYear();
-        const currentIndex = labels.findIndex(l => l === `${currentYear}`);
-        labels = labels.slice(currentIndex - displayCount + 1 >= 0 ? currentIndex - displayCount + 1 : 0, currentIndex + 1);
+        const currentIndex = labels.findIndex(
+          (l) => l === `${monthNames[currentMonth]} ${currentYear}`,
+        );
+        labels = labels.slice(
+          currentIndex - displayCount + 1 >= 0
+            ? currentIndex - displayCount + 1
+            : 0,
+          currentIndex + 1,
+        );
 
         if (sales.length < labels.length) {
           const diff = labels.length - sales.length;
@@ -181,12 +180,47 @@ const SalesPurchase = () => {
           Purchases: purchases[i],
         }));
         setData(formatted);
-        const maxValue = Math.max(...formatted.map(d => d.Sales), ...formatted.map(d => d.Purchases));
+        const maxValue = Math.max(
+          ...formatted.map((d) => d.Sales),
+          ...formatted.map((d) => d.Purchases),
+        );
         const step = Math.pow(10, Math.floor(Math.log10(maxValue)));
         setYMax(Math.ceil(maxValue / step) * step);
         return;
       }
 
+      if (selectedRange === "yearly") {
+        labels = generateYearlyLabels();
+        const now = new Date();
+        const currentYear = now.getFullYear();
+        const currentIndex = labels.findIndex((l) => l === `${currentYear}`);
+        labels = labels.slice(
+          currentIndex - displayCount + 1 >= 0
+            ? currentIndex - displayCount + 1
+            : 0,
+          currentIndex + 1,
+        );
+
+        if (sales.length < labels.length) {
+          const diff = labels.length - sales.length;
+          sales = [...Array(diff).fill(0), ...sales];
+          purchases = [...Array(diff).fill(0), ...purchases];
+        }
+
+        const formatted = labels.map((label, i) => ({
+          name: label,
+          Sales: sales[i],
+          Purchases: purchases[i],
+        }));
+        setData(formatted);
+        const maxValue = Math.max(
+          ...formatted.map((d) => d.Sales),
+          ...formatted.map((d) => d.Purchases),
+        );
+        const step = Math.pow(10, Math.floor(Math.log10(maxValue)));
+        setYMax(Math.ceil(maxValue / step) * step);
+        return;
+      }
     } catch (err) {
       console.error("Error fetching chart data", err);
     }
@@ -214,7 +248,7 @@ const SalesPurchase = () => {
         </div>
       </div>
 
-      <ResponsiveContainer width="100%" height={320}>
+      <ResponsiveContainer width="90%" height={280}>
         <BarChart
           data={data}
           margin={{ top: 20, right: 20, left: 0, bottom: 20 }}
@@ -234,32 +268,37 @@ const SalesPurchase = () => {
 
           <XAxis
             dataKey="name"
+            tick={{ fontSize: isMobile ? 10 : 12 }}
+            interval={isMobile ? "preserveStartEnd" : 0}
+            angle={isMobile ? -25 : 0}
+            textAnchor={isMobile ? "end" : "middle"}
+            height={isMobile ? 60 : 30}
             tickLine={false}
             axisLine={false}
-            interval={0}
           />
 
           <YAxis
-            type="number"
+            tick={{ fontSize: isMobile ? 10 : 12 }}
             domain={[0, yMax]}
             tickLine={false}
             axisLine={false}
           />
 
           <Tooltip formatter={(value) => value} />
-          <Legend verticalAlign="bottom" height={36} />
+
+          <Legend wrapperStyle={{ fontSize: isMobile ? "10px" : "12px" }} />
 
           <Bar
             dataKey="Sales"
             fill="url(#salesColor)"
-            radius={[8, 8, 0, 0]}
-            barSize={20}
+            radius={[6, 6, 0, 0]}
+            barSize={isMobile ? 14 : 20}
           />
           <Bar
             dataKey="Purchases"
             fill="url(#purchaseColor)"
-            radius={[8, 8, 0, 0]}
-            barSize={20}
+            radius={[6, 6, 0, 0]}
+            barSize={isMobile ? 14 : 20}
           />
         </BarChart>
       </ResponsiveContainer>

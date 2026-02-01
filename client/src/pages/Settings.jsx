@@ -1,8 +1,6 @@
 import Sidebar from "../components/Sidebar.jsx";
-import '../styles/Settings/Settings.css'
+import "../styles/Settings/Settings.css";
 import SettingsForm from "../components/Settings/SettingsForm";
-
-
 
 const Settings = () => {
   return (
@@ -11,7 +9,6 @@ const Settings = () => {
         <Sidebar />
       </div>
       <div className="settings-wrapper">
-        
         <SettingsForm />
       </div>
     </div>

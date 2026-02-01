@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: row;
   width: 100%;
-  height: 100vh;
+  height: 100%;
 }
 
 .sidebar-wrapper {
@@ -10,10 +10,11 @@
   height: 100%;
 }
 
-.rightHome-wrapper {
+.addproduct-rightHome-wrapper {
   width: 80%;
   height: 100%;
   background-color: #424457;
+  padding: 10px;
 }
 .productForm{
     background-color: #ECECF4;
@@ -184,6 +185,7 @@ border-radius: 4px;
 .createLink{
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .h-h2{
@@ -191,4 +193,79 @@ border-radius: 4px;
   color: #ffffff;
   padding: 10px;
   font-size: 14px;
+}
+
+@media (max-width: 900px) {
+  .sidebar-wrapper {
+    display: none; /* hide sidebar on tablets and smaller screens */
+  }
+
+  .addproduct-rightHome-wrapper {
+    width: 100%;
+  }
+
+  .formRow {
+    flex-direction: column; /* stack label and input vertically */
+    align-items: flex-start;
+  }
+
+  .formRow label {
+    width: 100%;
+    margin-bottom: 4px;
+  }
+
+  .formRow input {
+    width: 100%;
+  }
+
+  .imageUploadSection {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .imagePreviewBox {
+    width: 100px;
+    height: 100px;
+  }
+
+  .addBtn,
+  .discardBtn {
+    width: 100%;
+  }
+
+  .productForm {
+    margin: 10px;
+    padding: 15px;
+  }
+}
+
+@media (max-width: 600px) {
+  .imagePreviewBox {
+    width: 80px;
+    height: 80px;
+  }
+
+  .uploadTextBlock p,
+  .orText,
+  .browseText {
+    font-size: 12px;
+  }
+
+  .formRow input {
+    font-size: 13px;
+    padding: 8px 10px;
+  }
+
+  .addBtn,
+  .discardBtn {
+    padding: 8px 12px;
+  }
+
+  #h-h1 {
+    font-size: 16px;
+  }
+
+  .h-h2 {
+    font-size: 12px;
+  }
 }

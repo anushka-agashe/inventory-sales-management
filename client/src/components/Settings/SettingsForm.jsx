@@ -1,10 +1,12 @@
 import { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../../context/AuthContext";
-import closebtn from '../../assets/icons/symbols_close.png'
+import closebtn from "../../assets/icons/symbols_close.png";
 import "../../styles/Settings/SettingsForm.css";
+import { useNavigate } from "react-router-dom";
 
 const SettingsForm = () => {
   const { user, login } = useContext(AuthContext);
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -26,7 +28,6 @@ const SettingsForm = () => {
         firstName: data.firstName,
         lastName: data.lastName,
         email: data.email,
-        
       }));
     };
     fetchProfile();
@@ -71,8 +72,14 @@ const SettingsForm = () => {
       <hr className="custom-line-3" />
       <form className="settingForm" action="" onSubmit={handleSubmit}>
         <div className="setting-header">
+          <img
+            src={closebtn}
+            alt="close"
+            className="close-icon"
+            onClick={() => navigate("/home")}
+          />
+
           <h4 id="s-h4">Edit Profile</h4>
-        <img src={closebtn} alt="close" className="close-icon" />
         </div>
         <hr className="custom-line-4" />
         <hr className="custom-line-5" />

@@ -11,13 +11,21 @@ const InvoiceTable = ({ search }) => {
   const [invoices, setInvoices] = useState([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const [activeMenu, setActiveMenu] = useState(null);
+  const [activeRow, setActiveRow] = useState(null);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [invoiceToDelete, setInvoiceToDelete] = useState(null);
   const [showInvoiceModal, setShowInvoiceModal] = useState(false);
   const [selectedInvoice, setSelectedInvoice] = useState(null);
+
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const menuRef = useRef(null);
-  //  const [activePaidMenu, setActivePaidMenu] = useState(null);
 
   useEffect(() => {
     fetchInvoices();
@@ -26,7 +34,8 @@ const InvoiceTable = ({ search }) => {
   const fetchInvoices = async () => {
     try {
       const token = localStorage.getItem("token");
-      const limit = 6;
+
+      const limit = isMobile ? 1000 : 6;
 
       const res = await axios.get(
         `http://localhost:4000/api/invoices?page=${page}&limit=${limit}`,
@@ -94,26 +103,22 @@ const InvoiceTable = ({ search }) => {
     }
   };
 
-
   useEffect(() => {
-  const handleClickOutside = (event) => {
-    if (menuRef.current && !menuRef.current.contains(event.target)) {
-      setActiveMenu(null); // close menu
-    }
-  };
+    const handleClickOutside = (e) => {
+      if (menuRef.current && !menuRef.current.contains(e.target)) {
+        setActiveRow(null);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
-  document.addEventListener("mousedown", handleClickOutside);
-  return () => {
-    document.removeEventListener("mousedown", handleClickOutside);
-  };
-}, []);
-
-
-const filteredInvoices = invoices.filter((inv) =>
-  inv.invoiceId?.toLowerCase().includes(search?.toLowerCase()) ||
-  inv.referenceNumber?.toLowerCase().includes(search?.toLowerCase()) ||
-  inv.status?.toLowerCase().includes(search?.toLowerCase())
-);
+  const filteredInvoices = invoices.filter(
+    (inv) =>
+      inv.invoiceId?.toLowerCase().includes(search?.toLowerCase()) ||
+      inv.referenceNumber?.toLowerCase().includes(search?.toLowerCase()) ||
+      inv.status?.toLowerCase().includes(search?.toLowerCase()),
+  );
 
   return (
     <>
@@ -127,127 +132,157 @@ const filteredInvoices = invoices.filter((inv) =>
             <thead>
               <tr>
                 <th>Invoice ID</th>
-                <th>Reference Number</th>
-                <th>Amount (₹)</th>
-                <th>Status</th>
-                <th>Due Date</th>
+                {!isMobile && (
+                  <>
+                    <th>Reference</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                    <th>Due Date</th>
+                  </>
+                )}
+
+                {isMobile && <th>Actions</th>}
               </tr>
             </thead>
 
             <tbody>
-              {filteredInvoices?.length === 0 ? (
-                <tr>
-                  <td colSpan="6" style={{ textAlign: "center" }}>
-                    No invoices found
-                  </td>
-                </tr>
-              ) : (
-                  filteredInvoices.map((inv) => (
-                  <tr
-                    key={inv._id}
-                    style={{ cursor: "pointer" }}
-                    // onClick={() => handleRowClick(inv)}
-                  >
-                    <td>{inv.invoiceId}</td>
-                    <td>{inv.referenceNumber}</td>
-                    <td>₹{inv.amount}</td>
-                    <td>{inv.status}</td>
+              {filteredInvoices.map((inv) => {
+                const isPaid = inv.status === "Paid";
+                const isActive = activeRow === inv._id;
 
-                    <td className="actionCell">
-                      {inv.dueDate
-                        ? new Date(inv.dueDate).toLocaleDateString()
-                        : "—"}
-
-                      <div
-                        className="dots"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setActiveMenu(
-                            activeMenu === inv._id ? null : inv._id,
-                          );
-                        }}
-                      >
-                        ⋮
+                return (
+                  <tr key={inv._id}>
+                    <td className="invoiceCell">
+                      <div className="cell-content">
+                        {inv.invoiceId}
+                        {isMobile && (
+                          <span
+                            className="dots"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setActiveRow(isActive ? null : inv._id);
+                            }}
+                          >
+                            ⋮
+                          </span>
+                        )}
                       </div>
 
-                      {activeMenu === inv._id && (
-                        <div className="actionMenu" ref={menuRef}>
-                          {inv.status === "Unpaid" && (
-                            <button
-                              className="statusBtn unpaid"
-                              onClick={() => toggleStatus(inv.invoiceId)}
-                            >
-                              <img className="img-bg" src={billPaid} alt="" />
-                              Unpaid
-                            </button>
-                          )}
-
-                          {inv.status === "Paid" && (
-                            <>
-                              <button
-                                className="statusBtn paid"
-                                onClick={() => toggleStatus(inv.invoiceId)}
-                              >
-                                <img className="img-bg" src={billPaid} alt="" />
-                                Paid
-                              </button>
-                              <div className="invoice-action">
-                                <button
-                                  className="menuBtn"
-                                  // onClick={() => viewInvoice(inv.invoiceId)}
-                                  onClick={() => {
-                                    setSelectedInvoice(inv);
-                                    setShowInvoiceModal(true);
-                                    setActiveMenu(null);
-                                  }}
-                                >
-                                  <img src={viewInv} alt="" />
-                                  View Invoice
-                                </button>
-
-                                <button
-                                  className="menuBtn delete"
-                                  onClick={() => {
-                                    setInvoiceToDelete(inv.invoiceId);
-                                    setShowDeleteModal(true);
-                                    setActiveMenu(null);
-                                  }}
-                                >
-                                  <img src={delInvoice} alt="" />
-                                  Delete Invoice
-                                </button>
-                              </div>
-                            </>
-                          )}
-                        </div>
+                      {isMobile && isActive && (
+                        <button
+                          className={`floatingStatusBtn ${isPaid ? "paid" : "unpaid"}`}
+                          onClick={() => toggleStatus(inv.invoiceId)}
+                        >
+                          {isPaid ? "Paid" : "Unpaid"}
+                        </button>
                       )}
                     </td>
+
+                    {!isMobile && (
+                      <>
+                        <td>{inv.referenceNumber}</td>
+                        <td>₹{inv.amount}</td>
+                        <td>{inv.status}</td>
+                        <td className="dueDateCell">
+                          {inv.dueDate
+                            ? new Date(inv.dueDate).toLocaleDateString()
+                            : "—"}
+                          <span
+                            className="dots"
+                            onClick={() =>
+                              setActiveRow(isActive ? null : inv._id)
+                            }
+                          >
+                            ⋮
+                          </span>
+                          {isActive && (
+                            <div className="desktopMenuWrapper" ref={menuRef}>
+                              <button
+                                className={`floatingStatusBtn ${isPaid ? "paid" : "unpaid"}`}
+                                onClick={() => toggleStatus(inv.invoiceId)}
+                              >
+                                {isPaid ? "Paid" : "Unpaid"}
+                              </button>
+                              {isPaid && (
+                                <div className="desktopActionsBox">
+                                  <button
+                                    onClick={() => {
+                                      setSelectedInvoice(inv);
+                                      setShowInvoiceModal(true);
+                                      setActiveRow(null);
+                                    }}
+                                  >
+                                    <img src={viewInv} alt="view" /> View
+                                  </button>
+                                  <button
+                                    onClick={() => {
+                                      setInvoiceToDelete(inv.invoiceId);
+                                      setShowDeleteModal(true);
+                                      setActiveRow(null);
+                                    }}
+                                  >
+                                    <img src={delInvoice} alt="delete" /> Delete
+                                  </button>
+                                </div>
+                              )}
+                            </div>
+                          )}
+                        </td>
+                      </>
+                    )}
+
+                    {isMobile && (
+                      <td className="mobileActionIcons">
+                        <div className="mobile-btn-wrapper">
+                          <button
+                            disabled={!isPaid}
+                            onClick={() => {
+                              setSelectedInvoice(inv);
+                              setShowInvoiceModal(true);
+                            }}
+                          >
+                            <img src={viewInv} alt="view" />
+                          </button>
+                          <button
+                            disabled={!isPaid}
+                            onClick={() => {
+                              setInvoiceToDelete(inv.invoiceId);
+                              setShowDeleteModal(true);
+                            }}
+                          >
+                            <img src={delInvoice} alt="delete" />
+                          </button>
+                        </div>
+                      </td>
+                    )}
                   </tr>
-                ))
-              )}
+                );
+              })}
             </tbody>
           </table>
         </div>
 
-        <div className="footer">
-          <button
-            id="prev"
-            disabled={page === 1}
-            onClick={() => setPage((prev) => prev - 1)}
-          >
-            Previous
-          </button>
-          <p id="pageNo">
-            Page {page} of {totalPages}
-          </p>
-          <button
-            id="next"
-            disabled={page === totalPages}
-            onClick={() => setPage((prev) => prev + 1)}
-          >
-            Next
-          </button>
-        </div>
+        {!isMobile && (
+          <div className="footer">
+            <button
+              id="prev"
+              disabled={page === 1}
+              onClick={() => setPage((prev) => prev - 1)}
+            >
+              Previous
+            </button>
+            <p id="pageNo">
+              Page {page} of {totalPages}
+            </p>
+            <button
+              id="next"
+              disabled={page === totalPages}
+              onClick={() => setPage((prev) => prev + 1)}
+            >
+              Next
+            </button>
+          </div>
+        )}
       </div>
       {showDeleteModal && (
         <DeleteInvoice
@@ -259,14 +294,14 @@ const filteredInvoices = invoices.filter((inv) =>
         />
       )}
       {showInvoiceModal && (
-  <InvoicePreviewModal
-    invoice={selectedInvoice}
-    onClose={() => {
-      setShowInvoiceModal(false);
-      setSelectedInvoice(null);
-    }}
-  />
-)}
+        <InvoicePreviewModal
+          invoice={selectedInvoice}
+          onClose={() => {
+            setShowInvoiceModal(false);
+            setSelectedInvoice(null);
+          }}
+        />
+      )}
     </>
   );
 };

@@ -11,6 +11,7 @@
     gap: 10px;
     padding: 10px;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .paidInvoiceDetails , .unpaidInvoiceDetails , .totalInvoiceCount ,.paidInvoice ,.unpaidInvoice {
@@ -20,12 +21,42 @@
     justify-content: space-between;
 }
 
-.recentTransactions{
+/* .recentTransactions{
     display: flex;
     flex-direction: column;
     gap: 10px;
     padding-right: 20px;
     margin-right: 20px;
+} */
+
+/* .recentTransactions, */
+/* .totalInvoices,
+.paidInvoiceDetails,
+.unpaidInvoiceDetails {
+  display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-right: 20px;
+    margin-right: 20px;
+} */
+/* 
+.totalInvoiceCount ,
+.paidInvoice ,
+.unpaidInvoice {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: space-between;
+}  */
+
+.totalInvoiceCount,
+.paidInvoice,
+.unpaidInvoice {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
 .totalInvoices ,.paidInvoiceDetails , .unpaidInvoiceDetails,
@@ -34,39 +65,94 @@
 .paidAmt , 
 .paidCount,
 .unpaidAmt,
-.unpaidCount{
+.unpaidCount,.recentTransactions {
     display: flex;
     flex-direction: column;
     gap: 10px;
    flex: 1;    
 } 
 
+/* .invoiceCount,
+.processedInvoice,
+.paidAmt,
+.paidCount,
+.unpaidAmt,
+.unpaidCount {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex: 1 1 80px;
+} */
+
 .vertical-line {
   border-left: 2px solid #ccc; 
   height: 50px;              
+  /* height: auto; */
 padding: 20px;
+margin: 0 10px;
 
 }
 
 .p-titleName{
     color: #424242;
-    font-size: 20px;
+    /* font-size: 20px; */
+    font-size: clamp(16px, 2vw, 20px);
     /* padding-bottom: 20px; */
     margin: 5px;
     padding: 5px;
 }
 
 .p-h3{
-    font-size: 16px;
+    /* font-size: 16px; */
+    font-size: clamp(14px, 1.5vw, 16px);
     color: black;
+    margin: 0;
 }
 
 .p-p1{
-    font-size: 16px;
+    /* font-size: 16px; */
+    font-size: clamp(14px, 1.5vw, 16px);
     color: #757575;
+      margin: 0;    
 }
 
 .p-p2{
-    font-size: 16px;
+    /* font-size: 16px; */
+    font-size: clamp(12px, 1.2vw, 16px);
     color: #BDBDBD;
+     margin: 0;
+}
+@media (max-width: 768px) {
+
+  
+  .section {
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 15px;
+  }
+
+  
+  .vertical-line {
+    display: none;
+  }
+
+  
+  .recentTransactions,
+  .totalInvoices,
+  .paidInvoiceDetails,
+  .unpaidInvoiceDetails {
+    width: 100%;
+    padding: 12px; 
+    border-radius: 12px; 
+    background: #ffffff; 
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  }
+
+  
+  .totalInvoiceCount,
+  .paidInvoice,
+  .unpaidInvoice {
+    flex-direction: column;
+    gap: 6px;
+  }
 }
