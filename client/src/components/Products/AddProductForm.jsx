@@ -67,7 +67,7 @@ const AddProductForm = () => {
       data.append("threshold", formData.threshold);
       data.append("file", imageFile);
 
-      const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/products`, data, {
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/products`, data, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

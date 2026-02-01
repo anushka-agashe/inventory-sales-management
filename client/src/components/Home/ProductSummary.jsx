@@ -12,7 +12,7 @@ const ProductSummary = () => {
       try {
         const token = localStorage.getItem("token");
         const res = await axios.get(
-          `${process.env.REACT_APP_API_URL}/api/products/product-summary`,
+          `${import.meta.env.VITE_API_URL}/api/products/product-summary`,
           { headers: { Authorization: `Bearer ${token}` } },
         );
         setProduct(res.data);

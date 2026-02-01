@@ -22,7 +22,7 @@ const ResetPasswordForm = ({ email, otp }) => {
     if (password !== confirmPassword) return setError("Passwords do not match");
 
     try {
-      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/user/resetpassword`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/user/resetpassword`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, otp, newpassword: password }),

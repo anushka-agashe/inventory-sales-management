@@ -38,7 +38,7 @@ const InvoiceTable = ({ search }) => {
       const limit = isMobile ? 1000 : 6;
 
       const res = await axios.get(
-        `${process.env.REACT_APP_API_URL}/api/invoices?page=${page}&limit=${limit}`,
+        `${import.meta.env.VITE_API_URL}/api/invoices?page=${page}&limit=${limit}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         },
@@ -55,7 +55,7 @@ const InvoiceTable = ({ search }) => {
     try {
       const token = localStorage.getItem("token");
       await axios.patch(
-        `${process.env.REACT_APP_API_URL}/api/invoices/toggle/${invoiceId}`,
+        `${import.meta.env.VITE_API_URL}/api/invoices/toggle/${invoiceId}`,
         {},
         { headers: { Authorization: `Bearer ${token}` } },
       );
@@ -70,7 +70,7 @@ const InvoiceTable = ({ search }) => {
   const deleteInvoice = async (invoiceId) => {
     try {
       const token = localStorage.getItem("token");
-      await axios.delete(`${process.env.REACT_APP_API_URL}/api/invoices/${invoiceId}`, {
+      await axios.delete(`${import.meta.env.VITE_API_URL}/api/invoices/${invoiceId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -90,7 +90,7 @@ const InvoiceTable = ({ search }) => {
       const token = localStorage.getItem("token");
 
       await axios.delete(
-        `${process.env.REACT_APP_API_URL}/api/invoices/${invoiceToDelete}`,
+        `${import.meta.env.VITE_API_URL}/api/invoices/${invoiceToDelete}`,
         { headers: { Authorization: `Bearer ${token}` } },
       );
 

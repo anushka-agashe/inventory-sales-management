@@ -12,7 +12,7 @@ const InventorySummary = () => {
       try {
         const token = localStorage.getItem("token");
         const res = await axios.get(
-          `${process.env.REACT_APP_API_URL}/api/products/inventory-summary`,
+          `${import.meta.env.VITE_API_URL}/api/products/inventory-summary`,
           { headers: { Authorization: `Bearer ${token}` } },
         );
         setInventory(res.data);

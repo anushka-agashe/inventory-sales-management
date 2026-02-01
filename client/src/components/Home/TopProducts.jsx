@@ -9,7 +9,7 @@ const TopProducts = () => {
     try {
       const token = localStorage.getItem("token");
 
-      const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/stats/summary`, {
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/stats/summary`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -46,8 +46,8 @@ const TopProducts = () => {
               className="itemIcon"
               src={
                 product.image
-                  ? `${process.env.REACT_APP_API_URL}/${product.image}`
-                  : `${process.env.REACT_APP_API_URL}/default-product.png`
+                  ? `${import.meta.env.VITE_API_URL}/${product.image}`
+                  : `${import.meta.env.VITE_API_URL}/default-product.png`
               }
               alt={product.name}
               onError={(e) => {

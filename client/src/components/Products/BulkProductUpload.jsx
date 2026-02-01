@@ -38,7 +38,7 @@ const BulkProductUpload = ({ onClose }) => {
       formData.append("file", file);
 
       await axios.post(
-        `${process.env.REACT_APP_API_URL}/api/products/bulkupload`,
+        `${import.meta.env.VITE_API_URL}/api/products/bulkupload`,
         formData,
         {
           headers: { Authorization: `Bearer ${token}` },

@@ -22,7 +22,7 @@ const OverallInvoice = () => {
       const token = localStorage.getItem("token");
 
       const res = await axios.get(
-        "http://localhost:4000/api/invoices/dashboard",
+        `${import.meta.env.VITE_API_URL}/api/invoices/dashboard`,
         {
           headers: { Authorization: `Bearer ${token}` },
         },
@@ -38,7 +38,7 @@ const OverallInvoice = () => {
     try {
       const token = localStorage.getItem("token");
       const res = await axios.get(
-        "http://localhost:4000/api/invoices/dashboard",
+        `${import.meta.env.VITE_API_URL}/api/invoices/dashboard`,
         { headers: { Authorization: `Bearer ${token}` } },
       );
 

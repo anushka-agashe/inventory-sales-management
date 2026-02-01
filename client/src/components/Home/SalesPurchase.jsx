@@ -97,7 +97,7 @@ const SalesPurchase = () => {
     try {
       const token = localStorage.getItem("token");
       const res = await axios.get(
-        `${process.env.REACT_APP_API_URL}/api/transactions/summary?range=${selectedRange}`,
+        `${import.meta.env.VITE_API_URL}/api/transactions/summary?range=${selectedRange}`,
         { headers: { Authorization: `Bearer ${token}` } },
       );
 
