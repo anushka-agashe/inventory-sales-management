@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "../../styles/auth/ResetPasswordForm.css";
 import eyeIcon from "../../assets/icons/eyeIcon.png";
+import { Link } from "react-router-dom";
 
 const ResetPasswordForm = ({ email, otp }) => {
   const [showNewPassword, setShowNewPassword] = useState(false);
@@ -22,11 +23,14 @@ const ResetPasswordForm = ({ email, otp }) => {
     if (password !== confirmPassword) return setError("Passwords do not match");
 
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/user/resetpassword`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, otp, newpassword: password }),
-      });
+      const res = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/user/resetpassword`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, otp, newpassword: password }),
+        },
+      );
 
       const data = await res.json();
       if (!res.ok) throw new Error(data.error);
@@ -85,7 +89,17 @@ const ResetPasswordForm = ({ email, otp }) => {
             onClick={() => setShowConfirmPassword(!showConfirmPassword)}
           />
         </div>
-
+        <Link
+          to="/auth/login"
+          style={{
+            textDecoration: "none",
+            color: "blue",
+            fontSize: "16px",
+            alignSelf: "flex-end",
+          }}
+        >
+          Login
+        </Link>
         {error && <p className="error">{error}</p>}
         {success && <p style={{ color: "green" }}>{success}</p>}
         <button id="reset-btn" type="submit">
