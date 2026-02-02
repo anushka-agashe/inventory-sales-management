@@ -94,6 +94,7 @@
   .inventoryDashboard {
     height: auto;
     min-height: unset;
+    padding-bottom: 20px;
   }
 
   .section-inventory {

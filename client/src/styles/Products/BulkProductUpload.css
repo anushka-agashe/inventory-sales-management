@@ -9,6 +9,10 @@
   max-width: 550px;
   width: 550px;
   height: 350px ;
+  /* width: 100%;
+  width: 550px;
+  max-height: 90vh; */
+  overflow-y: auto;
 }
 
 .bulkUploadModal.expanded {
@@ -173,6 +177,7 @@
 @media (max-width: 600px) {
   .bulkUploadModal {
     max-width: 95%;
+    width: 350px;
     padding: 15px;
     border-radius: 12px;
   }

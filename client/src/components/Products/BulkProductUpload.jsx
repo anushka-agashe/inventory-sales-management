@@ -8,6 +8,7 @@ const BulkProductUpload = ({ onClose ,onUploadSuccess  }) => {
   const [file, setFile] = useState(null);
   const [error, setError] = useState("");
   const [previewMode, setPreviewMode] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleFileChange = (e) => {
     const selected = e.target.files[0];
@@ -30,9 +31,10 @@ const BulkProductUpload = ({ onClose ,onUploadSuccess  }) => {
   };
 
   const handleUpload = async () => {
-    // if (!file) return setError("Please select a CSV file");
+    if (!file) return setError("Please select a CSV file");
 
     try {
+      setLoading(true);
       const token = localStorage.getItem("token");
       const formData = new FormData();
       formData.append("file", file);
@@ -47,12 +49,18 @@ const BulkProductUpload = ({ onClose ,onUploadSuccess  }) => {
       );
 
       alert("Products uploaded successfully!");
-       onUploadSuccess(); 
+
+      window.dispatchEvent(new Event("productsUpdated"));
+
+      // onUploadSuccess(); 
+      onUploadSuccess?.();
       onClose();
-      window.location.reload(); // refresh table
+      // window.location.reload(); // refresh table
     } catch (err) {
       console.error(err);
       setError(err.response?.data?.error || "Upload failed");
+    }finally {
+      setLoading(false); // 
     }
   };
 
@@ -95,17 +103,17 @@ const BulkProductUpload = ({ onClose ,onUploadSuccess  }) => {
       )}
 
       <div className="modal-actions">
-        <button className="action-cancel-btn" onClick={onClose}>
+        <button className="action-cancel-btn" onClick={onClose} disabled={loading}>
           Cancel
         </button>
 
         {!previewMode ? (
-          <button className="next-btn" onClick={handleNext}>
+          <button className="next-btn" onClick={handleNext}  disabled={loading}>
             Next &gt;
           </button>
         ) : (
-          <button className="next-btn" onClick={handleUpload}>
-            Upload
+          <button className="next-btn" onClick={handleUpload} disabled={loading}>
+            {loading ? "Uploading..." : "Upload"} 
           </button>
         )}
       </div>
